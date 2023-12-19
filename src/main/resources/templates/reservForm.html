@@ -1,116 +1,60 @@
-<!-- src/main/resources/templates/edit.html -->
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>예약하기</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Bootstrap Datepicker CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <title>TodayIdo</title>
 </head>
 <body>
-<header>
-    <th:block th:insert="~{fragments::header(${session.member})}"/>
-</header>
-<button type="button" class="btn-primary" data-toggle="modal" data-target="#editModal">
-    예약 하기
-</button>
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">예약하기</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="reservationForm">
-                    <label for="date">날짜:</label>
-                    <input type="date" id="date" name="date" required>
-
-                    <label for="people">인원수:</label>
-                    <input type="number" id="people" name="people" min="1" required>
-
-                    <label for="time">시간:</label>
-                    <input type="time" id="time" name="time" required>
-
-                    <!-- 예약하기 button -->
-                    <button type="submit" class="btn btn-primary" id="saveReservation">저장</button>
-
-                    <!-- 예약 취소하기 button -->
-                    <button type="button" class="btn btn-secondary" id="cancelReservation">취소</button>
-                </form>
-                <div id="successMessage" style="display: none; margin-top: 10px;">
-                    <p class="alert alert-success" id="successMessageText">예약이 완료되었습니다.</p>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+<div class="top-bar" th:fragment="header(member)">
+    <div class="content">
+        <img alt="로고" class="top-left logo" onclick="gohome()" src="images/logo 1.png">
+        <div class="se-area">
+            <form class="search-box" th:action="@{/}">
+                <input id="keyword" name="keyword" placeholder="오늘 뭐하지?">
+            </form>
+        </div>
+        <nav class="top-right">
+            <ul>
+                <th:block th:if="${member == null}">
+                    <li><a th:href="@{loginForm}">로그인</a></li>
+                    <li><a th:href="@{joinForm}">회원가입</a></li>
+                </th:block>
+                <th:block th:unless="${member == null}">
+                    <li th:text="${member.m_id}+'님'"></li>
+                    <li><a th:href="@{logout}">로그아웃</a></li>
+                </th:block>
+                <input class="burger-check" id="burger-check" type="checkbox" />
+                <label class="burger-icon" for="burger-check"><span class="burger-sticks"></span></label>
+                <div class="menu">
+                    <a th:href="@{rCategory.html}">카테고리</a>
+                    <a href="#">마이페이지</a>
+                    <a href="#">문의사항</a>
+                    <a href="#">관리자</a>
+                    <div style="width: 200px;"></div>
                 </div>
-            </div>
+            </ul>
+        </nav>
+    </div>
+    <script th:inline="javascript">
+        const mem = [[${session.member}]];
+        function gohome(){
+            if(mem != null){
+                location.href = "boardList?pageNum=1";
+            } else {
+                location.href = "/";
+            }
+        }
+    </script>
+</div>
+<div class="footer-bar" th:fragment="footer">
+    <div class="content">
+        <div class="fcontents">
+            <img class="footer-logo" src="images/logo 1.png">
+            <span class="footer-txt">
+                &copy; TodayIdo
+            </span>
         </div>
     </div>
 </div>
-
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- Bootstrap Datepicker JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<!-- Initialize Datepicker -->
-<script>
-    $(document).ready(function(){
-        $('#date').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true
-        });
-
-        $('#reservationForm').submit(function(event) {
-            event.preventDefault();
-
-            // 서버에 예약 데이터 전송 및 예약 수정 처리 로직
-            // 아래 코드는 예시로, 실제로는 서버와의 통신을 통해 데이터를 전송하고,
-            // 서버에서는 해당 데이터를 받아 처리해야 합니다.
-
-            var formData = {
-                date: $('#date').val(),
-                people: $('#people').val(),
-                time: $('#time').val()
-            };
-
-            // Ajax를 사용하여 서버로 데이터 전송
-            $.ajax({
-                type: 'POST',
-                url: '/reservation/saveOrUpdate',  // 수정 또는 신규 예약을 구분할 수 있는 엔드포인트
-                data: formData,
-                success: function(response) {
-                    // 서버로부터의 응답을 처리
-                    // 여기에서는 성공 시 메시지를 표시하도록 예시로 작성했습니다.
-                    $('#successMessageText').text('예약이 완료되었습니다.');
-                    $('#successMessage').show();
-                },
-                error: function(error) {
-                    // 에러 처리
-                    console.error('Error:', error);
-                }
-            });
-        });
-
-        // 예약 취소하기 버튼 클릭 이벤트 처리
-        $('#cancelReservation').click(function() {
-            // 취소 처리 로직을 추가하세요.
-            // 아래는 예시로 취소 시 메시지를 표시하는 코드입니다.
-            alert('예약이 취소되었습니다.');
-            $('#editModal').modal('hide');  // 모달 닫기
-        });
-    });
-</script>
 </body>
-<footer>
-    <th:block th:insert="~{fragments::footer}"/>
-</footer>
 </html>
