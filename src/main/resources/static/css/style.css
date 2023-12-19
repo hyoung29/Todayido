@@ -173,6 +173,11 @@ section {
 .top-right img {
 	margin: 15px;
 }
+
+.modal-title{
+	text-align: center;
+}
+
 .footer-bar {
 	width: 100%;
 	background-color: #5b5b5b;
@@ -416,4 +421,73 @@ section {
 }
 .recommend_content img {
 	width: 90%;
+}
+/*태욱*/
+.modal-title {
+	margin: 0 auto;
+}
+
+.mb-3 .form-control {
+	width: 200px;
+	margin: 0 auto;
+}
+label.form-label {
+	text-align: center;
+}
+.text-center {
+	text-align: center;
+}
+.btn-primary {
+	background: #0d6efd;
+	color: white;
+	border-radius: 10px;
+	border: none;
+	height: 40px;
+	width: 60px;
+
+}
+.btn-primary{
+	margin: 0 auto;
+	height: 40px;
+	width: 100px;
+}
+.btn-center {
+	margin: 0 auto;
+}
+.btn-reserve{
+	margin: 20px auto;
+	background: #0d6efd;
+	padding: 6px 12px;
+	color: white;
+	border-radius: 10px;
+	border: none;
+	height: 40px;
+	width: 100px;
+
+}
+.btn-secondary {
+	border: none;
+	background: grey;
+	border-radius: 10px;
+	height: 40px;
+	width: 60px;
+	color: white;
+}
+.btn-class {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.btn-map a {
+	text-decoration: none;
+	margin: 0 auto;
+	background: #0d6efd;
+	color: white;
+	border-radius: 10px;
+	border: none;
+	height: 40px;
+	width: 100px;
+	justify-content: center;
+	display: flex;
+	align-items: center;
 }
