@@ -1,7 +1,7 @@
 package com.metamong.todayido.service;
 
-import com.aidata.springboard02.dao.MemberDao;
-import com.aidata.springboard02.dto.MemberDto;
+import com.metamong.todayido.dao.MemberDao;
+import com.metamong.todayido.dto.MemberDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,12 @@
 package com.metamong.todayido.dao;
 
-import com.aidata.springboard02.dto.BoardDto;
-import com.aidata.springboard02.dto.BoardFileDto;
-import com.aidata.springboard02.dto.ReplyDto;
-import com.aidata.springboard02.dto.SearchDto;
+import com.metamong.todayido.dto.BoardDto;
+import com.metamong.todayido.dto.BoardFileDto;
+import com.metamong.todayido.dto.ReplyDto;
+import com.metamong.todayido.dto.SearchDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
 @Mapper
 public interface BoardDao {
     List<BoardDto> selectBoardList(SearchDto sdto);

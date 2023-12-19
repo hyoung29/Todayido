@@ -1,6 +1,6 @@
 package com.metamong.todayido.dao;
 
-import com.aidata.springboard02.dto.MemberDto;
+import com.metamong.todayido.dto.MemberDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

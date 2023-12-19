@@ -1,9 +1,9 @@
 package com.metamong.todayido.controller;
 
-import com.aidata.springboard02.dto.BoardFileDto;
-import com.aidata.springboard02.dto.ReplyDto;
-import com.aidata.springboard02.service.BoardService;
-import com.aidata.springboard02.service.MemberService;
+import com.metamong.todayido.dto.BoardFileDto;
+import com.metamong.todayido.dto.ReplyDto;
+import com.metamong.todayido.service.BoardService;
+import com.metamong.todayido.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
