@@ -1,7 +1,7 @@
 package com.metamong.todayido.service;
 
-import com.metamong.todayido.dao.MemberDao;
-import com.metamong.todayido.dto.MemberDto;
+import com.metamong.todayido.dao.UserDao;
+import com.metamong.todayido.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +11,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Service
 @Slf4j
-public class MemberService {
+public class UserService {
     @Autowired
-    private MemberDao mDao;
+    private UserDao uDao;
 
-    private BCryptPasswordEncoder pEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder pEncoder = new BCryptPasswordEncoder();
 
-    public String idCheck(String mid){
+    public String idCheck(String userid){
         log.info("idCheck()");
         String result = null;
-        int mcnt = mDao.selectId(mid);
+        int mcnt = uDao.selectId(userid);
         if(mcnt == 0){
             result = "ok";
         } else {
@@ -28,16 +28,16 @@ public class MemberService {
         }
         return result;
     }
-    public String memberJoin(MemberDto member, RedirectAttributes rttr){
-        log.info("memberJoin()");
+    public String UserJoin(UserDto user, RedirectAttributes rttr){
+        log.info("UserJoin()");
         String view = null;
         String msg = null;
 
-        String encPwd = pEncoder.encode(member.getM_pwd());
+        String encPwd = pEncoder.encode(user.getUser_password());
 
-        member.setM_pwd(encPwd);
+        user.setUser_password(encPwd);
         try {
-            mDao.insertMember(member);
+            uDao.insertUser(user);
             msg = "가입 성공";
             view = "redirect:joinForm";
         } catch (Exception e){
@@ -46,17 +46,17 @@ public class MemberService {
         rttr.addFlashAttribute("msg", msg);
         return view;
     }
-    public String loginProc(MemberDto member, HttpSession session, RedirectAttributes rttr){
+    public String loginProc(UserDto user, HttpSession session, RedirectAttributes rttr){
         log.info("loginProc()");
         String view = null;
         String msg = null;
 
-        String encPwd = mDao.selectPassword(member.getM_id());
+        String encPwd = uDao.selectPassword(user.getUser_id());
         if(encPwd != null){
 
-            if(pEncoder.matches(member.getM_pwd(), encPwd)){
-                member = mDao.selectMember(member.getM_id());
-                session.setAttribute("member", member);
+            if(pEncoder.matches(user.getUser_password(), encPwd)){
+                user = uDao.selectMember(user.getUser_id());
+                session.setAttribute("user", user);
                 view = "redirect:boardList?pageNum=1";
                 msg = "로그인 성공";
             } else {

@@ -1,9 +1,8 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.BoardFileDto;
-import com.metamong.todayido.dto.ReplyDto;
 import com.metamong.todayido.service.BoardService;
-import com.metamong.todayido.service.MemberService;
+import com.metamong.todayido.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class BoardRestController {
     @Autowired
-    private MemberService mServ;
+    private UserService mServ;
     @Autowired
     private BoardService bServ;
     @GetMapping("idCheck")
@@ -32,10 +31,10 @@ public class BoardRestController {
         List<BoardFileDto> fList = bServ.delFile(bFile, session);
         return fList;
     }
-    @PostMapping("replyInsert")
-    public ReplyDto replyInsert(ReplyDto reply){
-        log.info("replyInsert()");
-        reply = bServ.replyInsert(reply);
-        return reply;
-    }
+//    @PostMapping("replyInsert")
+//    public ReviewDto replyInsert(ReviewDto reply){
+//        log.info("replyInsert()");
+//        reply = bServ.replyInsert(reply);
+//        return reply;
+//    }
 }
