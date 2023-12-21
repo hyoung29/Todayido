@@ -2,7 +2,7 @@ package com.metamong.todayido.dao;
 
 import com.metamong.todayido.dto.BoardDto;
 import com.metamong.todayido.dto.BoardFileDto;
-import com.metamong.todayido.dto.ReplyDto;
+import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.dto.SearchDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -21,7 +21,7 @@ public interface BoardDao {
     //게시글 번호에 해당하는 파일목록을 가져오는 메소드
     List<BoardFileDto> selectFileList(int b_num);
     //게시글 번호에 해당하는 댓글목록을 가져오는 메소드
-    List<ReplyDto> selectReplyList(int b_num);
+    List<ReviewDto> selectReplyList(int b_num);
     //게시글 번호에 해당하는 게시글, 파일목록, 댓글목록 삭제 메소드
     void deleteBoard(int b_num);
     void deleteFiles(int b_num);
@@ -33,7 +33,7 @@ public interface BoardDao {
     //게시글 수정 메소드
     void updateBoard(BoardDto board);
     //댓글 저장 메소드
-    void insertReply(ReplyDto rDto);
+    void insertReply(ReviewDto rDto);
     //댓글 번호로 댓글 정보 가져오는 메소드
-    ReplyDto selectLastReply(int r_num);
+    ReviewDto selectLastReply(int r_num);
 }

@@ -74,9 +74,24 @@ public class BoardController {
         String view = bServ.updateBoard(files, board, session, rttr);
         return view;
     }
-    @GetMapping("reservForm")
-    public String reservForm(){
-        log.info("reservForm()");
-        return "reservForm";
-}
+    @GetMapping("rCategory")
+    public String rCategory(){
+        log.info("rCategory()");
+        return "rCategory";
+    }
+    @GetMapping("cCategory")
+    public String cCategory(){
+        log.info("cCategory()");
+        return "cCategory";
+    }
+    @GetMapping("bCategory")
+    public String bCategory(){
+        log.info("bCategory()");
+        return "bCategory";
+    }
+    @GetMapping("pCategory")
+    public String pCategory(){
+        log.info("pCategory()");
+        return "pCategory";
+    }
 }

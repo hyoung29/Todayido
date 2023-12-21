@@ -1,8 +1,11 @@
 package com.metamong.todayido.service;
 
 import com.metamong.todayido.dao.BoardDao;
-import com.metamong.todayido.dao.MemberDao;
-import com.metamong.todayido.dto.*;
+import com.metamong.todayido.dao.UserDao;
+import com.metamong.todayido.dto.BoardDto;
+import com.metamong.todayido.dto.BoardFileDto;
+import com.metamong.todayido.dto.ReviewDto;
+import com.metamong.todayido.dto.SearchDto;
 import com.metamong.todayido.util.PagingUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -33,15 +37,14 @@ public class BoardService {
     @Autowired
     private BoardDao bDao;
 
-    @Autowired
-    private MemberDao mDao;
+    private final int lcnt = 5;//한 화면(페이지)에 보여질 글 개수
     //트랜젝션 관련 객체 선언
     @Autowired
     private PlatformTransactionManager manager;
     @Autowired
     private TransactionDefinition definition;
-
-    private int lcnt = 5;//한 화면(페이지)에 보여질 글 개수
+    @Autowired
+    private UserDao mDao;
 
     public ModelAndView getBoardList(SearchDto sdto, HttpSession session) {
         log.info("getBoardList()");
@@ -105,18 +108,6 @@ public class BoardService {
 
             //파일 저장(파일 정보 저장)
             fileUpload(files, session, board.getB_num());
-            //작성자 point 수정
-            MemberDto member = (MemberDto) session.getAttribute("member");
-            int point = member.getM_point() + 10;
-            if (point > 100) {//point가 100을 넘지 않도록 필터링.
-                point = 100;
-            }
-            member.setM_point(point);
-            mDao.updateMemberPoint(member);
-            //세션에 새 정보를 저장.
-            member = mDao.selectMember(member.getM_id());
-            session.setAttribute("member", member);
-            //세션에 같은 이름으로 set을 하면 덮어쓰기가 된다.
 
             manager.commit(status);//최종 승인
             view = "redirect:boardList?pageNum=1";
@@ -142,7 +133,7 @@ public class BoardService {
         realPath += "upload/";//파일 업로드용 폴더
         //업로드용 폴더가 없으면 자동으로 생성
         File folder = new File(realPath);
-        if (folder.isDirectory() == false) {
+        if (!folder.isDirectory()) {
             //isDirectory() - 폴더의 유무 확인 메소드
             //폴더가 있으면 true, 없거나 폴더가 아니면 false
             folder.mkdir();//Make Directory(폴더)
@@ -177,7 +168,7 @@ public class BoardService {
         List<BoardFileDto> bfList = bDao.selectFileList(b_num);
         mv.addObject("bfList", bfList);
         //게시글의 댓글목록 가져오기
-        List<ReplyDto> rList = bDao.selectReplyList(b_num);
+        List<ReviewDto> rList = bDao.selectReplyList(b_num);
         mv.addObject("rList", rList);
 
         mv.setViewName("boardDetail");
@@ -192,7 +183,7 @@ public class BoardService {
         //실제 파일이 저장된 하드디스크까지의 경로를 수립
         InputStreamResource fResource = new InputStreamResource(new FileInputStream(realPath));
         //파일명이 한글인 경우 UTF-8로 인코딩
-        String fileName = URLEncoder.encode(bfile.getBf_oriname(), "UTF-8");
+        String fileName = URLEncoder.encode(bfile.getBf_oriname(), StandardCharsets.UTF_8);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM).cacheControl(CacheControl.noCache())
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName).body(fResource);
     }
@@ -241,7 +232,7 @@ public class BoardService {
         realPath += "upload/";
         for (String sn : fList) {
             File file = new File(realPath + sn);
-            if (file.exists() == true) {//파일 존재 확인
+            if (file.exists()) {//파일 존재 확인
                 file.delete();//파일 삭제
             }
         }
@@ -300,18 +291,5 @@ public class BoardService {
         }
         rttr.addFlashAttribute("msg", msg);
         return view;
-    }
-
-    public ReplyDto replyInsert(ReplyDto reply) {
-        log.info("replyInsert()");
-
-        try {
-            bDao.insertReply(reply);
-            reply = bDao.selectLastReply(reply.getR_num());
-        } catch (Exception e) {
-            e.printStackTrace();
-            reply = null;
-        }
-        return reply;
     }
 }

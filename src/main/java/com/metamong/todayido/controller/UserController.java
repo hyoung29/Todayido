@@ -1,7 +1,7 @@
 package com.metamong.todayido.controller;
 
-import com.metamong.todayido.dto.MemberDto;
-import com.metamong.todayido.service.MemberService;
+import com.metamong.todayido.dto.UserDto;
+import com.metamong.todayido.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +12,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
-public class MemberController {
+public class UserController {
     @Autowired
-    private MemberService mServ;
+    private UserService uServ;
 
     @GetMapping("/")
     public String home(){
         log.info("home()");
         return "index";
-    }
-    @GetMapping("joinForm")
-    public String joinForm(){
-        log.info("joinForm()");
-        return "joinForm";
     }
     @GetMapping("findId")
     public String findId(){
@@ -36,10 +31,15 @@ public class MemberController {
         log.info("findPw()");
         return "findPw";
     }
+    @GetMapping("joinForm")
+    public String joinForm(){
+        log.info("joinForm()");
+        return "joinForm";
+    }
     @PostMapping("joinProc")
-    public String joinProc(MemberDto member, RedirectAttributes rttr) {
+    public String joinProc(UserDto user, RedirectAttributes rttr) {
         log.info("joinProc()");
-        String view = mServ.memberJoin(member, rttr);
+        String view = uServ.userJoin(user, rttr);
         return view;
     }
     @GetMapping("loginForm")
@@ -48,15 +48,15 @@ public class MemberController {
         return "loginForm";
     }
     @PostMapping("loginProc")
-    public String loginProc(MemberDto member, HttpSession session, RedirectAttributes rttr){
+    public String loginProc(UserDto user, HttpSession session, RedirectAttributes rttr){
         log.info("loginProc()");
-        String view = mServ.loginProc(member, session, rttr);
+        String view = uServ.loginProc(user, session, rttr);
         return view;
     }
     @GetMapping("logout")
     public String logout(HttpSession session){
         log.info("logout()");
-        String view = mServ.logout(session);
+        String view = uServ.logout(session);
         return view;
     }
 }
