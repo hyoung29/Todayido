@@ -38,4 +38,5 @@ public class BoardRestController {
         reply = bServ.replyInsert(reply);
         return reply;
     }
+
 }

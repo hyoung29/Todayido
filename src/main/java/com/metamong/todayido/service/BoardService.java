@@ -30,14 +30,17 @@ import java.util.List;
 @Service
 @Slf4j
 public class BoardService {
+
     @Autowired
     private BoardDao bDao;
 
     @Autowired
     private MemberDao mDao;
     //트랜젝션 관련 객체 선언
+
     @Autowired
     private PlatformTransactionManager manager;
+
     @Autowired
     private TransactionDefinition definition;
 
@@ -124,7 +127,7 @@ public class BoardService {
         } catch (Exception e) {
             e.printStackTrace();
             manager.rollback(status);//취소
-            view = "redirect:writeForm";
+            view = "redirect:qnaWrite";
             msg = "작성 실패";
         }
         rttr.addFlashAttribute("msg", msg);
