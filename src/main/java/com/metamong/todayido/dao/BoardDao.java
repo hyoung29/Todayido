@@ -2,8 +2,8 @@ package com.metamong.todayido.dao;
 
 import com.metamong.todayido.dto.BoardDto;
 import com.metamong.todayido.dto.BoardFileDto;
-import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.dto.SearchDto;
+import com.metamong.todayido.dto.ReviewDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -4,8 +4,8 @@ import com.metamong.todayido.dao.BoardDao;
 import com.metamong.todayido.dao.UserDao;
 import com.metamong.todayido.dto.BoardDto;
 import com.metamong.todayido.dto.BoardFileDto;
-import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.dto.SearchDto;
+import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.util.PagingUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -296,17 +296,17 @@ public class BoardService {
         return view;
     }
 
-    public ReplyDto replyInsert(ReplyDto reply) {
-        log.info("replyInsert()");
-
-        try {
-            bDao.insertReply(reply);
-            reply = bDao.selectLastReply(reply.getR_num());
-        } catch (Exception e) {
-            e.printStackTrace();
-            reply = null;
-        }
-        return reply;
-    }
+//    public ReplyDto replyInsert(ReplyDto reply) {
+//        log.info("replyInsert()");
+//
+//        try {
+//            bDao.insertReply(reply);
+//            reply = bDao.selectLastReply(reply.getR_num());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            reply = null;
+//        }
+//        return reply;
+//    }
 
 }

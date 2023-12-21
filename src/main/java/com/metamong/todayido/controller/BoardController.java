@@ -69,7 +69,7 @@ public class BoardController {
 //        return mv;
 //    }
 
-//    //파일 다운로드
+    //    //파일 다운로드
 //    @GetMapping("download")
 //    public ResponseEntity<Resource> fileDownload(BoardFileDto bfile, HttpSession session) throws IOException {
 //        log.info("fileDownload()");
@@ -97,31 +97,35 @@ public class BoardController {
 //        String view = bServ.updateBoard(files, board, session, rttr);
 //        return view;
 //    }
-      @GetMapping("rCategory")
-      public String rCategory(){
-      log.info("rCategory()");
-      return "rCategory";
-      }
-      @GetMapping("cCategory")
-      public String cCategory(){
-      log.info("cCategory()");
-      return "cCategory";
-      }
-      @GetMapping("bCategory")
-      public String bCategory(){
-      log.info("bCategory()");
-      return "bCategory";
-      }
-      @GetMapping("pCategory")
-      public String pCategory(){
-      log.info("pCategory()");
-      return "pCategory";
+    @GetMapping("rCategory")
+    public String rCategory() {
+        log.info("rCategory()");
+        return "rCategory";
     }
+
+    @GetMapping("cCategory")
+    public String cCategory() {
+        log.info("cCategory()");
+        return "cCategory";
+    }
+
+    @GetMapping("bCategory")
+    public String bCategory() {
+        log.info("bCategory()");
+        return "bCategory";
+    }
+
+    @GetMapping("pCategory")
+    public String pCategory() {
+        log.info("pCategory()");
+        return "pCategory";
+    }
+
     @GetMapping("reservForm")
-    public String reservForm(int a, int b, Model model){
+    public String reservForm(int a, int b, Model model) {
         log.info("reservForm()");
         model.addAttribute("a", a);
         model.addAttribute("b", b);
         return "reservForm";
-}
+    }
 }

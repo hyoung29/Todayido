@@ -5,7 +5,7 @@
     <select id="seleteStore" resultType="storeDto" parameterType="Integer">
         SELECT * FROM store WHERE store_num=#{store_num}
     </select>
-    <select id="seletereview" resultType="reviewDto" parameterType="Integer">
+    <select id="seletereview" resultType="ReviewDto" parameterType="Integer">
         SELECT * FROM review WHERE store_num=#{store_num}
     </select>
 </mapper>

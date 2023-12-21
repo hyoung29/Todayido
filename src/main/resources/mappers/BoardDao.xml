@@ -10,7 +10,7 @@
 <!--    <insert id="insertFile" parameterType="boardFileDto">-->
 <!--        INSERT INTO boardfile VALUES (NULL,#{bf_bnum},#{bf_oriname},#{bf_sysname})-->
 <!--    </insert>-->
-    <insert id="insertReview" parameterType="reviewDto" useGeneratedKeys="true" keyProperty="review_num">
+    <insert id="insertReview" parameterType="ReviewDto" useGeneratedKeys="true" keyProperty="review_num">
         <selectKey keyProperty="review_num" resultType="Integer" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>

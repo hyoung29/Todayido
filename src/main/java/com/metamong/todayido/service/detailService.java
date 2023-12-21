@@ -1,7 +1,7 @@
 package com.metamong.todayido.service;
 
 import com.metamong.todayido.dao.detailDao;
-import com.metamong.todayido.dto.reviewDto;
+import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.dto.storeDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class detailService {
         ModelAndView mv = new ModelAndView();
         List<storeDto> sList = dDao.seleteStore(store_num);
         mv.addObject("sList", sList);
-        List<reviewDto> rList = dDao.seletereview(store_num);
+        List<ReviewDto> rList = dDao.seletereview(store_num);
         mv.addObject("rList", rList);
 
         mv.setViewName("detail");

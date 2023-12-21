@@ -10,12 +10,11 @@ import java.sql.Timestamp;
 public class ReviewDto {
     private int review_num;
     private String user_id;
-    private int store_num;
     private int rating;
     private String review_text;
     private String ower_review_comment;
-    private Timestamp created_at;
-    private Timestamp updated_at;
+    private Timestamp crated_at;
+    private Timestamp update_at;
     private String rv_oriname;
     private String rv_sysname;
 }
