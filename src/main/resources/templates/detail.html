@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width+device-width, initial-scale=1">
+    <title>TodayIdo</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .main-image{
+            width: 500px;
+            height: 300px;
+            background-color: #5b5b5b;
+            margin: 30px auto 0 auto;
+        }
+        .review{
+            width: 500px;
+            height: 300px;
+            background-color: #97cbff;
+            margin: 0 auto;
+        }
+
+        .rev{
+            width: 450px;
+            height: 200px;
+            margin: 25px auto 0 auto;
+            background-color: white;
+            padding: 10px;
+        }
+        .revproc{
+            width: 80px;
+            height: 30px;
+            background-color: white;
+            text-align: center;
+        }
+        .modalbg{
+            display: none;
+
+            text-align: center;
+        }
+        .modal{
+            width: 350px;
+            height: 220px;
+            background-color: white;
+            border: solid 1px black;
+            position: absolute;
+        }
+        input{
+            border: solid 1px #246C34;
+        }
+        .rev_title{
+            margin-top: 10px;
+            width: 55%;
+            height: 25px;
+        }
+        p{
+            margin-top: 5px;
+        }
+        button{
+            border: solid 1px #246C34;
+            background: transparent;
+            border-radius: 10px;
+            width: 50px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <th:block th:insert="~{fragments::header(${session.member})}"/>
+</header>
+<div class="main-image">
+
+</div>
+<div class="review">
+    <p>리뷰</p>
+<!--    <div>-->
+<!--        <th:block th:each="rev:${review}">-->
+<!--            <div th:text="${rev.user_id}"></div>-->
+<!--            <div th:text="${rev.review_text}"></div>-->
+<!--        </th:block>-->
+<!--    </div>-->
+    <!--  리뷰 등록  -->
+    <div class="modalbg">
+        <div class="modal">
+            <form id="rform">
+                제목 <input type="text" class="rev_title" placeholder="제목"><br>
+                내용<br>
+                <textarea name="textarea" cols="40" rows="8" placeholder="내용"></textarea><br>
+                <input type="button" value="등록" class="dr" id="drbtn">
+                <input type="button" value="닫기" class="close_rev" id="cbtn">
+            </form>
+        </div>
+    </div>
+    <!--  리뷰 출력 부분  -->
+    <div class="rev">
+        <div id="rSpace">
+                    <th:block th:each="rev:${review}">
+                        <div th:text="${rev.user_id}"></div>
+                        <div th:text="${rev.review_text}"></div>
+                    </th:block>
+        </div>
+    </div>
+    <div>
+        <button class="revproc">리뷰쓰기</button>
+    </div>
+</div>
+<footer>
+    <th:block th:insert="~{fragments::footer}"/>
+</footer>
+</body>
+<script>
+    $(function (){
+        $(".revproc").click(function (e){
+            e.preventDefault();
+            $(".modalbg").show();
+        })
+        $(".close_rev").click(function (){
+            $(".modalbg").hide();
+        })
+    })
+    $("#drbtn").click(function () {
+        const rForm = $("#rform").serialize();
+        //restController에 전송
+        $.ajax({
+            url: "reviewInsert",
+            type: "post",
+            data: rForm,
+            success: function (res) {
+                console.log(res);
+                if(res != null){
+                    let str = "";
+                    str += `
+                        <div th:text="${rev.user_id}"></div>
+                        <div th:text="${rev.review_text}"></div>
+                    `;
+                    $("#rSpace").prepend(str);
+                    $("#comment").val("");
+                } else {
+                    alert("댓글 작성 실패");
+                    $("#comment").val("");
+                    $("#comment").focus();
+                }
+            },
+            error: function (err) {
+                console.log(err);
+                alert("댓글 저장 실패");
+            }
+        })
+    })
+</script>
+</html>

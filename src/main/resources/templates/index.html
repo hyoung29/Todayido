@@ -34,6 +34,15 @@
         <h2>오늘 뭐하고 뭘 먹어야 할지 고민이라면!<br>
         오뭐? 오뭐! 오늘 뭐하지에서 검색!</h2>
     </div>
+    <a th:href="@{detail}">상세페이지</a>
+<!--    <th:block th:if="${#lists.isEmpty(store)}">-->
+<!--        <div style="color: white">상세페이지가 없습니다</div>-->
+<!--    </th:block>-->
+<!--    <th:block th:unless="${#lists.isEmpty(store)}">-->
+<!--        <th:block th:each="sList${store}">-->
+<!--            <a id="name" th:href="@{detail(store_num=${sList.store_num})}" th:text="${sList.store_name}"></a>-->
+<!--        </th:block>-->
+<!--    </th:block>-->
     <div class="content_area">
     <div id="restaurant">
         <h1 class="title">Restaurant</h1>
