@@ -295,4 +295,18 @@ public class BoardService {
         rttr.addFlashAttribute("msg", msg);
         return view;
     }
+
+    public ReplyDto replyInsert(ReplyDto reply) {
+        log.info("replyInsert()");
+
+        try {
+            bDao.insertReply(reply);
+            reply = bDao.selectLastReply(reply.getR_num());
+        } catch (Exception e) {
+            e.printStackTrace();
+            reply = null;
+        }
+        return reply;
+    }
+
 }
