@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // Reservation 클래스 정의
 
 
@@ -49,8 +52,12 @@ public class ReservFormController {
     }
 
     @GetMapping("/map")
-    public String map(){
+    public String map(int a, int b, Model model){
         log.info("map");
+        Map<String, Integer> lmap = new HashMap<>();
+        lmap.put("a", a);
+        lmap.put("b", b);
+        model.addAttribute("lmap", lmap);
         return "map";
     }
 

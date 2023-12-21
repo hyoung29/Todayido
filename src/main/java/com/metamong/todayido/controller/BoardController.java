@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -75,8 +76,10 @@ public class BoardController {
         return view;
     }
     @GetMapping("reservForm")
-    public String reservForm(){
+    public String reservForm(int a, int b, Model model){
         log.info("reservForm()");
+        model.addAttribute("a", a);
+        model.addAttribute("b", b);
         return "reservForm";
 }
 }
