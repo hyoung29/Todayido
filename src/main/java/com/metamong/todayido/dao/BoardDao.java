@@ -17,6 +17,7 @@ public interface BoardDao {
     //파일 정보 저장 메소드
     void insertFile(BoardFileDto bFile);
     //게시글 하나만 가져오는 메소드
+
     BoardDto selectBoard(int b_num);
     //게시글 번호에 해당하는 파일목록을 가져오는 메소드
     List<BoardFileDto> selectFileList(int b_num);

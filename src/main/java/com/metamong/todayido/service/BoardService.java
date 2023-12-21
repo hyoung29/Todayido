@@ -34,13 +34,16 @@ import java.util.List;
 @Service
 @Slf4j
 public class BoardService {
+
     @Autowired
     private BoardDao bDao;
 
     private final int lcnt = 5;//한 화면(페이지)에 보여질 글 개수
     //트랜젝션 관련 객체 선언
+
     @Autowired
     private PlatformTransactionManager manager;
+
     @Autowired
     private TransactionDefinition definition;
     @Autowired
@@ -115,7 +118,7 @@ public class BoardService {
         } catch (Exception e) {
             e.printStackTrace();
             manager.rollback(status);//취소
-            view = "redirect:writeForm";
+            view = "redirect:qnaWrite";
             msg = "작성 실패";
         }
         rttr.addFlashAttribute("msg", msg);
