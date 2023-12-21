@@ -292,17 +292,4 @@ public class BoardService {
         rttr.addFlashAttribute("msg", msg);
         return view;
     }
-
-    public ReviewDto reviewInsert(ReviewDto review) {
-        log.info("reviewInsert()");
-
-        try {
-            bDao.insertReview(review);
-            review = bDao.selectLastReview(review.getReview_num());
-        } catch (Exception e) {
-            e.printStackTrace();
-            review = null;
-        }
-        return review;
-    }
 }

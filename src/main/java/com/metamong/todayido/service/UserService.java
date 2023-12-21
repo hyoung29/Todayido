@@ -28,7 +28,7 @@ public class UserService {
         }
         return result;
     }
-    public String UserJoin(UserDto user, RedirectAttributes rttr){
+    public String userJoin(UserDto user, RedirectAttributes rttr){
         log.info("UserJoin()");
         String view = null;
         String msg = null;
@@ -55,7 +55,7 @@ public class UserService {
         if(encPwd != null){
 
             if(pEncoder.matches(user.getUser_password(), encPwd)){
-                user = uDao.selectMember(user.getUser_id());
+                user = uDao.selectUser(user.getUser_id());
                 session.setAttribute("user", user);
                 view = "redirect:boardList?pageNum=1";
                 msg = "로그인 성공";
