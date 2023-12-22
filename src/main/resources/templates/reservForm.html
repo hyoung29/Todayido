@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <th:block th:insert="~{fragments::header(${session.member})}"/>
+    <th:block th:insert="~{fragments::header(${session.user})}"/>
 </header>
 <!-- Your existing content -->
 <button type="button" class="btn-reserve" data-bs-toggle="modal" data-bs-target="#staticBackdrop">

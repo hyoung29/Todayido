@@ -17,11 +17,11 @@ public class UserService {
 
     private final BCryptPasswordEncoder pEncoder = new BCryptPasswordEncoder();
 
-    public String idCheck(String userid){
+    public String idCheck(String user_id){
         log.info("idCheck()");
         String result = null;
-        int mcnt = uDao.selectId(userid);
-        if(mcnt == 0){
+        int ucnt = uDao.selectId(user_id);
+        if(ucnt == 0){
             result = "ok";
         } else {
             result = "fail";

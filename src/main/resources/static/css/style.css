@@ -85,9 +85,6 @@
 .burger-check:checked~.burger-icon:not(.steps) .burger-sticks:after {
 	top: 0;
 }
-* {
-
-}
 
 html {
 	height: 100%;
@@ -218,10 +215,7 @@ section {
 .content_area {
 	background-color: white;
 }
-.bx-wrapper {
-	display: flex;
-	margin: 50px auto;
-}
+
 .bx-wrapper img {
 	max-width: 100%;
 	display: block;

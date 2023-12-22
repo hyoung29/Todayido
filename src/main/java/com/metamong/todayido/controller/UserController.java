@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -26,16 +25,6 @@ public class UserController {
         log.info("home()");
         return "index";
     }
-    @GetMapping("findId")
-    public String findId(){
-        log.info("findId()");
-        return "findId";
-    }
-    @GetMapping("findPw")
-    public String findPw(){
-        log.info("findPw()");
-        return "findPw";
-    }
     @GetMapping("joinForm")
     public String joinForm(){
         log.info("joinForm()");
@@ -46,6 +35,16 @@ public class UserController {
         log.info("joinProc()");
         String view = uServ.userJoin(user, rttr);
         return view;
+    }
+    @GetMapping("findId")
+    public String findId(){
+        log.info("findId()");
+        return "findId";
+    }
+    @GetMapping("findPw")
+    public String findPw(){
+        log.info("findPw()");
+        return "findPw";
     }
     @GetMapping("loginForm")
     public String loginForm(){
@@ -69,12 +68,6 @@ public class UserController {
         log.info("detail()");
         return "detail";
     }
-//    @GetMapping("detail")
-//    public ModelAndView detail(int store_num){
-//        log.info("detail() : {}", store_num);
-//        ModelAndView mv = dServ.getReview(store_num);
-//        return mv;
-//    }
     @GetMapping("myPage")
     public String myPage(){
         log.info("myPage()");

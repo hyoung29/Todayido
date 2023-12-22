@@ -15,12 +15,12 @@
         </div>
         <nav class="top-right">
             <ul>
-                <th:block th:if="${member == null}">
+                <th:block th:if="${user == null}">
                     <li><a th:href="@{loginForm}">로그인</a></li>
                     <li><a th:href="@{joinForm}">회원가입</a></li>
                 </th:block>
-                <th:block th:unless="${member == null}">
-                    <li th:text="${member.m_id}+'님'"></li>
+                <th:block th:unless="${user == null}">
+                    <li th:text="${user.user_id}+'님'"></li>
                     <li><a th:href="@{logout}">로그아웃</a></li>
                 </th:block>
                 <input class="burger-check" type="checkbox" id="burger-check" />

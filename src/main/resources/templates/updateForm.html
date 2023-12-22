@@ -17,17 +17,11 @@
 </head>
 <body>
 <header>
-    <th:block th:insert="~{fragments::header(${session.member})}" />
+    <th:block th:insert="~{fragments::header(${session.user})}" />
 </header>
 <section>
     <div class="content">
         <form th:action="@{updateProc}" class="write-form" method="post" enctype="multipart/form-data">
-            <div class="user-info">
-                <div class="user-info-sub" th:object="${session.member}">
-                    <p th:text="'등급 ['+*{g_name}+']'"></p>
-                    <p th:text="'POINT ['+*{m_point}+']'"></p>
-                </div>
-            </div>
             <h2 class="login-header">수정</h2>
             <input type="hidden" name="b_id" th:value="${board.b_id}">
             <input type="hidden" name="b_num" th:value="${board.b_num}">
