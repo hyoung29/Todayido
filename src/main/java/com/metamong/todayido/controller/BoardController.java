@@ -122,10 +122,10 @@ public class BoardController {
     }
 
     @GetMapping("reservForm")
-    public String reservForm(int a, int b, Model model) {
+    public String reservForm(int store_num, Model model) {
         log.info("reservForm()");
-        model.addAttribute("a", a);
-        model.addAttribute("b", b);
+        //DB에서 가계 정보(dto 등) 가져오기
+        //정보를 model에 넣기
         return "reservForm";
     }
 }

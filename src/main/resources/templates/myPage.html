@@ -2,49 +2,12 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width+device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TodayIdo</title>
-    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .resv{
-            background-color: white;
-            width: 500px;
-            height: 350px;
-        }
-        .prof{
-            justify-content: left;
-            display: flex;
-            align-items: baseline;
-        }
-
-        .prof img{
-            width: 220px;
-            justify-content: left;
-            display: flex;
-        }
-        .my{
-            margin-left: auto;
-        }
-        .pt{
-            width: 200px;
-        }
-        .resv_d{
-            justify-content: left;
-            display: flex;
-
-        }
-        .resv_c{
-            display: inline;
-
-        }
-        .resv_b{
-            background: transparent;
-            border: solid 1px #246C34;
-            width: 100px;
-            height: 40px;
-            border-radius: 20px;
-        }
+        /* Your existing styles... */
     </style>
 </head>
 <body>
@@ -52,32 +15,59 @@
     <th:block th:insert="~{fragments::header(${session.member})}"/>
 </header>
 <section>
-<div class="login-form">
-    <div class="prof">
-    <img src="images/prof.png">
-        <p>홍길동님</p>
-        <p class="my">내정보</p>
-    </div>
-    <div class="resv">
-        <h6>예약 현황</h6>
-        <div class="resv_d">
-        <img src="images/mesikdang.png" class="pt">
-            <div class="resv_c">
-                <p>4.4</p>
-                <p>미식당</p>
-                <p>청담동</p>
-                <p>모듬전, 맥주, 치킨 등</p>
+    <div class="login-form">
+        <div class="prof">
+            <p>홍길동님</p>
+            <p class="my">내정보</p>
+        </div>
+        <div class="resv">
+            <h6>예약 현황</h6>
+            <div class="resv_d">
+                <div class="rcontent">
+                    <img src="images/mesikdang.png" class="pt">
+                    <p class="rstar">4.4</p>
+                    <p class="rname">미식당</p>
+                    <p class="rplace">용현동</p>
+                    <p class="rmenu">모듬전, 맥주, 치킨 등</p>
+                </div>
+            </div>
+            <div>
+                <input type="button" value="예약변경" class="resv-change">
+                <input type="button" value="예약취소" class="resv-cancel">
             </div>
         </div>
-        <div>
-            <input type="button" value="예약변경" class="resv_b">
-            <input type="button" value="예약취소" class="resv_b">
-        </div>
     </div>
-</div>
 </section>
 <footer>
     <th:block th:insert="~{fragments::footer}"/>
 </footer>
+
+<script>
+    $(document).ready(function () {
+        // Function to handle reservation change
+        function changeReservation() {
+            // Implement your logic to change the reservation here
+            alert("예약이 변경되었습니다");
+        }
+
+        // Function to handle reservation cancellation
+        function cancelReservation() {
+            // Implement your logic to cancel the reservation here
+            alert("예약이 취소되었습니다!");
+            // Redirect to the original page (change the URL accordingly)
+            window.location.href = "myPage";
+        }
+
+        // Attach click event handler to the "예약변경" button
+        $(".resv-change").click(function () {
+            changeReservation();
+        });
+
+        // Attach click event handler to the "예약취소" button
+        $(".resv-cancel").click(function () {
+            cancelReservation();
+        });
+    });
+</script>
 </body>
 </html>
