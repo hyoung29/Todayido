@@ -32,7 +32,7 @@
     <div class="main-content">
         <h1>오늘 뭐하지?</h1>
         <h2>오늘 뭐하고 뭘 먹어야 할지 고민이라면!<br>
-        오뭐? 오뭐! 오늘 뭐하지에서 검색!</h2>
+            오뭐? 오뭐! 오늘 뭐하지에서 검색!</h2>
     </div>
     <a th:href="@{detail}">상세페이지</a>
 <!--    <th:block th:if="${#lists.isEmpty(store)}">-->
@@ -70,8 +70,10 @@
             <p class="rplace">학익동</p>
             <p class="rmenu">순대, 순대국밥,머릿고기</p>
         </div>
+        <!-- 이전 페이지의 HTML 코드 -->
         <div class="rcontent">
-            <a href="reservForm"><img src="images/sungwon.png"></a>
+            <a th:href="@{content}"><!-- 이 부분이 추가된 부분입니다. -->
+                <img src="images/sungwon.png"></a>
             <p class="rstar">4.1</p>
             <p class="rname">성원닭갈비</p>
             <p class="rplace">한남동</p>
