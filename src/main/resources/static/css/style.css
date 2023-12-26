@@ -151,6 +151,7 @@ section {
 .top-right ul li {
 	display: inline-flex;
 	margin: 0 10px;
+	color: white;
 }
 
 .top-right ul li a {
