@@ -1125,21 +1125,3 @@ label.form-label {
 	position: relative;
 }
 
-.bx-wrapper .bx-pager.bx-default-pager a {
-	background: #666;
-	text-indent: -9999px;
-	display: block;
-	width: 10px;
-	height: 10px;
-	margin: 2px;
-	outline: 0;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	text-align: center;
-}
-.bx-wrapper img {
-	max-width: 100%;
-	height: 500px;
-	display: block;
-}
