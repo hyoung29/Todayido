@@ -17,11 +17,11 @@ public class UserService {
 
     private final BCryptPasswordEncoder pEncoder = new BCryptPasswordEncoder();
 
-    public String idCheck(String userid){
+    public String idCheck(String user_id){
         log.info("idCheck()");
         String result = null;
-        int mcnt = uDao.selectId(userid);
-        if(mcnt == 0){
+        int ucnt = uDao.selectId(user_id);
+        if(ucnt == 0){
             result = "ok";
         } else {
             result = "fail";
@@ -51,13 +51,14 @@ public class UserService {
         String view = null;
         String msg = null;
 
+        String rPwd = user.getUser_password();
         String encPwd = uDao.selectPassword(user.getUser_id());
         if(encPwd != null){
 
-            if(pEncoder.matches(user.getUser_password(), encPwd)){
+            if(pEncoder.matches(rPwd, encPwd)){
                 user = uDao.selectUser(user.getUser_id());
                 session.setAttribute("user", user);
-                view = "redirect:boardList?pageNum=1";
+                view = "redirect:/";
                 msg = "로그인 성공";
             } else {
                 view = "redirect:loginForm";

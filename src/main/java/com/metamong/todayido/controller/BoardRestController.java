@@ -17,12 +17,13 @@ import java.util.List;
 public class BoardRestController {
     @Autowired
     private UserService mServ;
+
     @Autowired
     private BoardService bServ;
     @GetMapping("idCheck")
-    public String idCheck(String mid){
+    public String idCheck(String user_id){
         log.info("idCheck()");
-        String result = mServ.idCheck(mid);
+        String result = mServ.idCheck(user_id);
         return result;
     }
     @PostMapping("delFile")

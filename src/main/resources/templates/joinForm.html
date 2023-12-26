@@ -13,42 +13,23 @@
                 alert(m);
             }
         })
-        function isSame() {
-            var pw = document.twin.wUserPW.value;
-            var confirmPW = document.twin.wUserPWConfirm.value;
-            if (pw.length < 6 || pw.length > 16) {
-                window.alert('비밀번호는 6글자 이상, 16글자 이하만 사용 가능합니다.');
-                document.getElementById('pw').value = document.getElementById('pwCheck').value = '';
-                document.getElementById('same').innerHTML = '';
-            }
-            if (document.getElementById('pw').value != '' && document.getElementById('pwCheck').value != '') {
-                if (document.getElementById('pw').value == document.getElementById('pwCheck').value) {
-                    document.getElementById('same').innerHTML = '비밀번호가 일치합니다.';
-                    document.getElementById('same').style.color = 'blue';
-                } else {
-                    document.getElementById('same').innerHTML = '비밀번호가 일치하지 않습니다.';
-                    document.getElementById('same').style.color = 'red';
-                }
-            }
-        }
     </script>
 </head>
 <body>
 <header>
-    <th:block th:insert="~{fragments::header(${session.member})}"/>
+    <th:block th:insert="~{fragments::header(${session.user})}"/>
 </header>
 <section>
     <div class="content">
         <form th:action="@{joinProc}" method="post" class="login-form" name="jForm" onsubmit="return check()">
             <h2 class="login-header">회원 가입</h2>
-            <input type="name" class="login-input" name="m_name" title="이름" autofocus placeholder="이름">
-            <input type="text" class="login-input" id="mid" name="m_id" title="아이디" placeholder="아이디">
+            <input autofocus class="login-input" name="user_name" placeholder="이름" title="이름" type="text">
+            <input class="login-input" id="id" name="user_id" placeholder="아이디" title="아이디" type="text">
             <input type="button" class="idcheck-btn" value="중복확인" onclick="idcheck()">
-            <input type="password" class="login-input" id="pw" name="m_pwd" title="비밀번호" placeholder="비밀번호" onchange="isSame()">
-            <input type="password" class="login-input" id="pwCheck" name="m_pwd" title="비밀번호확인" placeholder="비밀번호확인" onchange="isSame()">
-            <input type="text" class="login-input" name="m_addr" title="주소" placeholder="주소">
-            <input type="date" class="login-input" name="m_birth" title="생일" placeholder="생일">
-            <input type="text" class="login-input" name="m_phone" title="핸드폰번호" placeholder="핸드폰번호">
+            <input class="login-input" id="pw" name="user_password" placeholder="비밀번호" title="비밀번호" type="password" >
+            <input class="login-input" id="pwCheck" name="check_password" placeholder="비밀번호확인" title="비밀번호확인" type="password" >
+            <input class="login-input" name="user_address" placeholder="주소" title="주소" type="text">
+            <input class="login-input" name="user_pnum" placeholder="핸드폰번호" title="핸드폰번호" type="text">
             <input type="button" class="login-btn" id="check" value="본인인증">
             <input type="submit" class="login-btn" value="가입">
         </form>
@@ -58,29 +39,29 @@
     <th:block th:insert="~{fragments::footer}"/>
 </footer>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"/>
 <script th:inline="javascript">
     let ck = false;
     function idcheck(){
-        let id = $("#mid").val();
+        let id = $("#id").val();
+        console.log(id);
         if(id == ""){
             alert("아이디를 입력하세요");
-            $("#mid").focus();
+            $("#id").focus();
             return;
         }
-        let sendObj = {"mid" : id};
+        let sendObj = {"user_id" : id};
         $.ajax({
             url: "idCheck",
             type: "get",
             data: sendObj,
             success: (res) => {
-                if(res == "ok"){
+                if (res == "ok"){
                     alert("사용 가능한 아이디입니다");
                     ck = true;
                 } else {
                     alert("사용할 수 없는 아이디입니다");
-                    $("#mid").val("");
-                    $("#mid").focus();
+                    $("#id").val("");
+                    $("#id").focus();
                     ck = false;
                 }
             },
@@ -90,6 +71,7 @@
             }
         })
     }
+
     function check(){
         if(ck == false){
             alert("아이디 중복 확인을 해주세요");
@@ -107,14 +89,5 @@
         }
         return true;
     }
-    $(function () {
-        $(".check").click(function () {
-            $(".overlay").show();
-            $("#date").focus();
-        })
-        $(".close").click(function () {
-            $(".overlay, .confirmation").hide();
-        })
-    })
 </script>
 </html>

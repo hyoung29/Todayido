@@ -17,15 +17,15 @@
 </head>
 <body>
 <header>
-    <th:block th:insert="~{fragments::header(${session.member})}" />
+    <th:block th:insert="~{fragments::header(${session.user})}" />
 </header>
 <section>
     <div class="content">
         <form th:action="@{loginProc}" method="post" class="login-form">
             <h2 class="login-header">로그인</h2>
-            <input type="text" class="login-input" name="m_id" autofocus required placeholder="아이디">
-            <input type="password" class="login-input" name="m_pwd" required placeholder="비밀번호">
-            <input class="login-btn" id="check" type="button" value="로그인">
+            <input autofocus class="login-input" name="user_id" placeholder="아이디" required type="text">
+            <input class="login-input" name="user_password" placeholder="비밀번호" required type="password">
+            <input class="login-btn" type="submit" value="로그인">
             <div class="find"><a th:href="@{findId}">아이디찾기</a></div>
             <div class="find"><a th:href="@{findPw}">비밀번호찾기</a></div>
             <div class="join"><a th:href="@{joinForm}">회원가입</a></div>
@@ -36,7 +36,4 @@
     <th:block th:insert="~{fragments::footer}" />
 </footer>
 </body>
-<script>
-
-</script>
 </html>
