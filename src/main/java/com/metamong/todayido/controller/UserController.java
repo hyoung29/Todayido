@@ -2,7 +2,6 @@ package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.UserDto;
 import com.metamong.todayido.service.UserService;
-import com.metamong.todayido.service.detailService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
     @Autowired
     private UserService uServ;
-
-    @Autowired
-    private detailService dServ;
 
     @GetMapping("/")
     public String home(){

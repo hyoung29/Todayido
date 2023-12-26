@@ -1,14 +1,10 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.BoardDto;
-import com.metamong.todayido.dto.BoardFileDto;
-import com.metamong.todayido.dto.SearchDto;
 import com.metamong.todayido.service.BoardService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
 @Slf4j
-
-
 
 //메인페이지에서 문의사항클릭하면 문의사항 리스트 페이지로 이동
 public class BoardController {
