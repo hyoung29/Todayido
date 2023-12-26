@@ -23,13 +23,13 @@
     <div class="content">
         <form th:action="@{joinProc}" method="post" class="login-form" name="jForm" onsubmit="return check()">
             <h2 class="login-header">회원 가입</h2>
-            <input autofocus class="login-input" name="user_name" placeholder="이름" title="이름" type="text">
+            <input autofocus class="login-input" name="user_name" placeholder="이름" required title="이름" type="text">
             <input class="login-input" id="id" name="user_id" placeholder="아이디" title="아이디" type="text">
             <input type="button" class="idcheck-btn" value="중복확인" onclick="idcheck()">
-            <input class="login-input" id="pw" name="user_password" placeholder="비밀번호" title="비밀번호" type="password" >
-            <input class="login-input" id="pwCheck" name="check_password" placeholder="비밀번호확인" title="비밀번호확인" type="password" >
-            <input class="login-input" name="user_address" placeholder="주소" title="주소" type="text">
-            <input class="login-input" name="user_pnum" placeholder="핸드폰번호" title="핸드폰번호" type="text">
+            <input class="login-input" id="pw" name="user_password" placeholder="비밀번호" required title="비밀번호" type="password">
+            <input class="login-input" id="pwCheck" name="check_password" placeholder="비밀번호확인" required title="비밀번호확인" type="password">
+            <input class="login-input" name="user_address" placeholder="주소" required title="주소" type="text">
+            <input class="login-input" name="user_pnum" placeholder="핸드폰번호" required title="핸드폰번호" type="text">
             <input type="button" class="login-btn" id="check" value="본인인증">
             <input type="submit" class="login-btn" value="가입">
         </form>

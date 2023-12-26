@@ -22,13 +22,7 @@
 <section>
     <div class="content">
         <div class="write-form">
-            <div class="user-info">
-                <div class="user-info-sub" th:object="${session.member}">
-                    <p th:text="'등급 ['+*{g_name}+']'"></p>
-                    <p th:text="'POINT ['+*{m_point}+']'"></p>
-                </div>
-            </div>
-                <h2 class="login-header">상세보기</h2>
+            <h2 class="login-header">상세보기</h2>
             <div>
                 <div class="t_content p-15">NUM</div>
                 <div class="d_content p-85" th:text="${board.b_num}"></div>
