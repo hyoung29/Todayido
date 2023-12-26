@@ -27,9 +27,8 @@
             <input class="login-input" id="id" name="user_id" placeholder="아이디" title="아이디" type="text">
             <input type="button" class="idcheck-btn" value="중복확인" onclick="idcheck()">
             <input class="login-input" id="pw" name="user_password" placeholder="비밀번호" title="비밀번호" type="password" >
-            <input class="login-input" id="pwCheck" name="user_password" placeholder="비밀번호확인" title="비밀번호확인" type="password" >
+            <input class="login-input" id="pwCheck" name="check_password" placeholder="비밀번호확인" title="비밀번호확인" type="password" >
             <input class="login-input" name="user_address" placeholder="주소" title="주소" type="text">
-            <input class="login-input" name="user_birth" placeholder="생일" title="생일" type="date">
             <input class="login-input" name="user_pnum" placeholder="핸드폰번호" title="핸드폰번호" type="text">
             <input type="button" class="login-btn" id="check" value="본인인증">
             <input type="submit" class="login-btn" value="가입">
@@ -43,10 +42,11 @@
 <script th:inline="javascript">
     let ck = false;
     function idcheck(){
-        let id = $("#user_id").val();
+        let id = $("#id").val();
+        console.log(id);
         if(id == ""){
             alert("아이디를 입력하세요");
-            $("#user_id").focus();
+            $("#id").focus();
             return;
         }
         let sendObj = {"user_id" : id};
@@ -55,13 +55,13 @@
             type: "get",
             data: sendObj,
             success: (res) => {
-                if(res == "ok"){
+                if (res == "ok"){
                     alert("사용 가능한 아이디입니다");
                     ck = true;
                 } else {
                     alert("사용할 수 없는 아이디입니다");
-                    $("#user_id").val("");
-                    $("#user_id").focus();
+                    $("#id").val("");
+                    $("#id").focus();
                     ck = false;
                 }
             },

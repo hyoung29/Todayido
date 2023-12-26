@@ -51,13 +51,14 @@ public class UserService {
         String view = null;
         String msg = null;
 
+        String rPwd = user.getUser_password();
         String encPwd = uDao.selectPassword(user.getUser_id());
         if(encPwd != null){
 
-            if(pEncoder.matches(user.getUser_password(), encPwd)){
+            if(pEncoder.matches(rPwd, encPwd)){
                 user = uDao.selectUser(user.getUser_id());
                 session.setAttribute("user", user);
-                view = "redirect:boardList?pageNum=1";
+                view = "redirect:/";
                 msg = "로그인 성공";
             } else {
                 view = "redirect:loginForm";

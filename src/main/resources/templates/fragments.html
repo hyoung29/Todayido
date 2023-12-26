@@ -5,7 +5,7 @@
     <title>TodayIdo</title>
 </head>
 <body>
-<div th:fragment="header(member)" class="top-bar">
+<div class="top-bar" th:fragment="header(user)">
     <div class="content">
         <img src="images/logo 1.png" alt="로고" class="top-left logo" onclick="gohome()">
         <div class="se-area">
@@ -20,7 +20,7 @@
                     <li><a th:href="@{joinForm}">회원가입</a></li>
                 </th:block>
                 <th:block th:unless="${user == null}">
-                    <li th:text="${user.user_id}+'님'"></li>
+                    <li th:text="${user.user_name}+'님'"></li>
                     <li><a th:href="@{logout}">로그아웃</a></li>
                 </th:block>
                 <input class="burger-check" type="checkbox" id="burger-check" />
