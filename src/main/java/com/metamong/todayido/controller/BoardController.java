@@ -128,4 +128,9 @@ public class BoardController {
         model.addAttribute("b", b);
         return "reservForm";
     }
+    @GetMapping("detail")
+    public String detail(){
+        log.info("detail()");
+        return "detail";
+    }
 }

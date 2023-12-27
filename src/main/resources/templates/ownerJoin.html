@@ -21,14 +21,15 @@
 </header>
 <section>
     <div class="content">
-        <form class="login-form" method="post" name="jForm" onsubmit="return check()" th:action="@{joinProc}">
-            <h2 class="login-header">회원 가입</h2>
-            <input autofocus class="login-input" name="user_name" placeholder="가게 이름" required title="가게 이름" type="text">
-            <input class="login-input" id="id" name="user_id" placeholder="사업자 번호" title="사업자 번호" type="text">
-            <input class="login-input" name="user_name" placeholder="가게 이름" required title="가게 이름" type="text">
-            <input class="login-input" id="pw" name="user_password" placeholder="비밀번호" required title="비밀번호" type="password">
+        <form class="login-form" method="post" name="jForm" onsubmit="return check()" th:action="@{ownerjoinProc}">
+            <h2 class="login-header">사업주 회원 가입</h2>
+            <input autofocus class="login-input" name="store_name" placeholder="가게 이름" required title="가게 이름" type="text">
+            <input class="login-input" name="business_num" placeholder="사업자 번호" title="사업자 번호" type="text">
+            <input class="login-input" name="owner_name" placeholder="대표자 이름" required title="가게 이름" type="text">
+            <input class="login-input" id="id" name="owner_id" placeholder="아이디" title="아이디" type="text">
+            <input type="button" class="idcheck-btn" value="중복확인" onclick="idcheck()">
+            <input class="login-input" id="pw" name="owner_pwd" placeholder="비밀번호" required title="비밀번호" type="password">
             <input class="login-input" id="pwCheck" name="check_password" placeholder="비밀번호확인" required title="비밀번호확인" type="password">
-            <input class="login-btn" id="check" type="button" value="본인인증">
             <input class="login-btn" type="submit" value="가입">
         </form>
     </div>
@@ -86,31 +87,6 @@
             }
         }
         return true;
-    }
-    function addHypen(obj) {
-        var number = obj.value.replace(/[^0-9]/g, "");
-        var phone = "";
-
-        if(number.length < 4) {
-            return number;
-        } else if(number.length < 7) {
-            phone += number.substr(0, 3);
-            phone += "-";
-            phone += number.substr(3);
-        } else if(number.length < 11) {
-            phone += number.substr(0, 3);
-            phone += "-";
-            phone += number.substr(3, 3);
-            phone += "-";
-            phone += number.substr(6);
-        } else {
-            phone += number.substr(0, 3);
-            phone += "-";
-            phone += number.substr(3, 4);
-            phone += "-";
-            phone += number.substr(7);
-        }
-        obj.value = phone;
     }
 </script>
 </html>

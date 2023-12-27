@@ -26,10 +26,27 @@ public class UserController {
         log.info("joinForm()");
         return "joinForm";
     }
-    @PostMapping("joinProc")
-    public String joinProc(UserDto user, RedirectAttributes rttr) {
-        log.info("joinProc()");
+    @PostMapping("userjoinProc")
+    public String userjoinProc(UserDto user, RedirectAttributes rttr) {
+        log.info("userjoinProc()");
         String view = uServ.userJoin(user, rttr);
+        return view;
+    }
+    @GetMapping("loginForm")
+    public String loginForm(){
+        log.info("loginForm()");
+        return "loginForm";
+    }
+    @PostMapping("userloginProc")
+    public String userloginProc(UserDto user, HttpSession session, RedirectAttributes rttr){
+        log.info("userloginProc()");
+        String view = uServ.userloginProc(user, session, rttr);
+        return view;
+    }
+    @GetMapping("logout")
+    public String logout(HttpSession session){
+        log.info("logout()");
+        String view = uServ.logout(session);
         return view;
     }
     @GetMapping("findId")
@@ -41,28 +58,6 @@ public class UserController {
     public String findPw(){
         log.info("findPw()");
         return "findPw";
-    }
-    @GetMapping("loginForm")
-    public String loginForm(){
-        log.info("loginForm()");
-        return "loginForm";
-    }
-    @PostMapping("loginProc")
-    public String loginProc(UserDto user, HttpSession session, RedirectAttributes rttr){
-        log.info("loginProc()");
-        String view = uServ.loginProc(user, session, rttr);
-        return view;
-    }
-    @GetMapping("logout")
-    public String logout(HttpSession session){
-        log.info("logout()");
-        String view = uServ.logout(session);
-        return view;
-    }
-    @GetMapping("detail")
-    public String detail(){
-        log.info("detail()");
-        return "detail";
     }
     @GetMapping("myPage")
     public String myPage(){
