@@ -21,4 +21,6 @@ public class storeDto {
     private String business_num;
     private Timestamp create_at;
     private Timestamp update_at;
+    private int position_x;
+    private int position_y;
 }
