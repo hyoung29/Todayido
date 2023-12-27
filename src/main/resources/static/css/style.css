@@ -467,12 +467,6 @@ section {
 	margin: 0 auto;
 }
 
-.user-info-sub {
-	float: right;
-	padding: 10px;
-	background-color: #fff;
-	border-radius: 5px;
-}
 
 .user-info-sub p {
 	display: inline;
@@ -703,22 +697,6 @@ span.file-title {
 
 .p-85 {
 	width: 85%;
-}
-
-.dp-10 {
-	width: 10%;
-}
-
-.dp-15 {
-	width: 15%;
-}
-
-.dp-20 {
-	width: 20%;
-}
-
-.dp-30 {
-	width: 30%;
 }
 
 .wrap {
