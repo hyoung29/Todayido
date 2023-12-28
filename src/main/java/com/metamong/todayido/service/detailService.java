@@ -19,9 +19,9 @@ public class detailService {
     public ModelAndView getReview(int store_num){
         log.info("getReview()");
         ModelAndView mv = new ModelAndView();
-        List<storeDto> sList = dDao.selectStore(store_num);
+        List<storeDto> sList = dDao.seleteStore(store_num);
         mv.addObject("sList", sList);
-        List<ReviewDto> rList = dDao.selectReview(store_num);
+        List<ReviewDto> rList = dDao.seletereview(store_num);
         mv.addObject("rList", rList);
 
         mv.setViewName("detail");
