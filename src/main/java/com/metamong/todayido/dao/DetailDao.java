@@ -11,5 +11,5 @@ public interface DetailDao {
     //스토어 가져오는 메소드
     List<StoreDto> selectStore(int storeNum);
 
-    List<ReviewDto> selectreview(int storeNum);
+    List<ReviewDto> selectReview(int storeNum);
 }
