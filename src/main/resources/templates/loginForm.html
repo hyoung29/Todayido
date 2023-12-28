@@ -21,7 +21,7 @@
 </header>
 <section>
     <div class="content">
-        <form th:action="@{loginProc}" method="post" class="login-form">
+        <form class="login-form" method="post" th:action="@{userloginProc}">
             <h2 class="login-header">로그인</h2>
             <input autofocus class="login-input" name="user_id" placeholder="아이디" required type="text">
             <input class="login-input" name="user_password" placeholder="비밀번호" required type="password">

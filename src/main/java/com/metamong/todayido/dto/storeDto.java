@@ -1,13 +1,8 @@
 package com.metamong.todayido.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.sql.Timestamp;
 
-@Getter
-@Setter
-public class storeDto {
+public class StoreDto {
     private int store_num;
     private String store_name;
     private String store_telephone;

@@ -17,17 +17,15 @@
 </head>
 <body>
 <header>
-    <th:block th:insert="~{fragments::header(${session.user})}"/>
+    <th:block th:insert="~{fragment::header(${session.owner})}"/>
 </header>
 <section>
     <div class="content">
         <form class="login-form" method="post" name="jForm" onsubmit="return check()" th:action="@{ownerjoinProc}">
-            <h2 class="login-header">사업주 회원 가입</h2>
+            <h2 class="login-header">사업주 회원가입</h2>
             <input autofocus class="login-input" name="store_name" placeholder="가게 이름" required title="가게 이름" type="text">
             <input class="login-input" name="business_num" placeholder="사업자 번호" title="사업자 번호" type="text">
             <input class="login-input" name="owner_name" placeholder="대표자 이름" required title="가게 이름" type="text">
-            <input class="login-input" id="id" name="owner_id" placeholder="아이디" title="아이디" type="text">
-            <input type="button" class="idcheck-btn" value="중복확인" onclick="idcheck()">
             <input class="login-input" id="pw" name="owner_pwd" placeholder="비밀번호" required title="비밀번호" type="password">
             <input class="login-input" id="pwCheck" name="check_password" placeholder="비밀번호확인" required title="비밀번호확인" type="password">
             <input class="login-btn" type="submit" value="가입">
@@ -40,42 +38,8 @@
 </body>
 <script th:inline="javascript">
     let ck = false;
-    function idcheck(){
-        let id = $("#id").val();
-        console.log(id);
-        if(id == ""){
-            alert("아이디를 입력하세요");
-            $("#id").focus();
-            return;
-        }
-        let sendObj = {"user_id" : id};
-        $.ajax({
-            url: "idCheck",
-            type: "get",
-            data: sendObj,
-            success: (res) => {
-                if (res == "ok"){
-                    alert("사용 가능한 아이디입니다");
-                    ck = true;
-                } else {
-                    alert("사용할 수 없는 아이디입니다");
-                    $("#id").val("");
-                    $("#id").focus();
-                    ck = false;
-                }
-            },
-            error: (err) => {
-                console.log(err);
-                ck = false;
-            }
-        })
-    }
 
     function check(){
-        if(ck == false){
-            alert("아이디 중복 확인을 해주세요");
-            return false;
-        }
         const jfrm = document.jForm;
         console.log(jfrm);
         let length = jfrm.length - 1;

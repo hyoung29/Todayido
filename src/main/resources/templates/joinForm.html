@@ -21,7 +21,7 @@
 </header>
 <section>
     <div class="content">
-        <form th:action="@{joinProc}" method="post" class="login-form" name="jForm" onsubmit="return check()">
+        <form class="login-form" method="post" name="jForm" onsubmit="return check()" th:action="@{userjoinProc}">
             <h2 class="login-header">회원 가입</h2>
             <input autofocus class="login-input" name="user_name" placeholder="이름" required title="이름" type="text">
             <input class="login-input" id="id" name="user_id" placeholder="아이디" title="아이디" type="text">

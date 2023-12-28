@@ -2,7 +2,6 @@ package com.metamong.todayido.service;
 
 import com.metamong.todayido.dao.OwnerDao;
 import com.metamong.todayido.dto.OwnerDto;
-import com.metamong.todayido.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class OwnerService {
 
     private final BCryptPasswordEncoder pEncoder = new BCryptPasswordEncoder();
 
-    public String ownerJoin(OwnerDto owner, RedirectAttributes rttr) {
+    public String ownerJoin(OwnerDto owner, RedirectAttributes rttr){
         log.info("OwnerJoin()");
         String view = null;
         String msg = null;
@@ -42,11 +41,11 @@ public class OwnerService {
         String msg = null;
 
         String rPwd = owner.getOwner_pwd();
-        String encPwd = oDao.selectPassword(owner.getOwner_id());
+        String encPwd = oDao.selectPassword(owner.getBusiness_num());
         if(encPwd != null){
 
             if(pEncoder.matches(rPwd, encPwd)){
-                owner = oDao.selectOwner(owner.getOwner_id());
+                owner = oDao.selectOwner(owner.getBusiness_num());
                 session.setAttribute("owner", owner);
                 view = "redirect:pindex";
                 msg = "로그인 성공";
@@ -61,5 +60,11 @@ public class OwnerService {
 
         rttr.addFlashAttribute("msg", msg);
         return view;
+    }
+
+    public String logout(HttpSession session) {
+        log.info("logout()");
+        session.invalidate();
+        return "redirect:/";
     }
 }
