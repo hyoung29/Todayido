@@ -21,11 +21,6 @@ import java.util.List;
 
 //메인페이지에서 문의사항클릭하면 문의사항 리스트 페이지로 이동
 public class BoardController {
-    @GetMapping("qnalist")
-    public String qnalist() {
-        log.info("qnalist()");
-        return "qnalist";
-    }
 
     // 글쓰기 폼 페이지
     @GetMapping("qnaWrite")
@@ -35,7 +30,7 @@ public class BoardController {
     }
 
     //글쓰기 프로세스 완료되면 list페이지로 이동
-    @PostMapping("writeProc") //sQnaWriteFroc
+    @PostMapping("WriteProc")
     public String writeProc(@RequestPart List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
         log.info("writeProc()");
         String view = bServ.boardWrite(files, board, session, rttr);
@@ -44,52 +39,54 @@ public class BoardController {
 
     //글 상세 조회 메소드
     @GetMapping("boardDetail")
-    public ModelAndView boardDetail(int b_num) {
-        log.info("boardDetail() : {}", b_num);
-        ModelAndView mv = bServ.getBoard(b_num);
+    public ModelAndView boardDetail(int qna_num) {
+        log.info("boardDetail() : {}", qna_num);
+        ModelAndView mv = bServ.getBoard(qna_num);
         return mv;
     }
-
 
     @Autowired
     private BoardService bServ;
 
+//    작성글 리스트로 불러오기
+    @GetMapping("qnalist")
+    public ModelAndView boardList(SearchDto sdto, HttpSession session) {
+        log.info("boardList()");
+        ModelAndView mv = bServ.getBoardList(sdto, session);
+        return mv;
+    }
 
-//    @GetMapping("boardList")
-//    public ModelAndView boardList(SearchDto sdto, HttpSession session) {
-//        log.info("boardList()");
-//        ModelAndView mv = bServ.getBoardList(sdto, session);
-//        return mv;
-//    }
+    // 글수정 폼 페이지
+    @GetMapping("qnaEdit")
+    public ModelAndView qnaEdit(int qna_num) {
+        log.info("qnaEdit");
+        ModelAndView mv = bServ.updateBoard(qna_num);
+        return mv;
+    }
 
-    //    //파일 다운로드
-//    @GetMapping("download")
-//    public ResponseEntity<Resource> fileDownload(BoardFileDto bfile, HttpSession session) throws IOException {
-//        log.info("fileDownload()");
-//        ResponseEntity<Resource> resp = bServ.fileDownload(bfile, session);
-//        return resp;
-//    }
-//
-//    @GetMapping("boardDelete")
-//    public String boardDelete(int b_num, HttpSession session, RedirectAttributes rttr) {
-//        log.info("boardDelete()");
-//        String view = bServ.deleteBoard(b_num, session, rttr);
-//        return view;
-//    }
-//
+    //글 수정 프로세스
+    @PostMapping("UpdateProc")
+    public String updateBoard(@RequestPart List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
+        log.info("UpdateProc()");
+        String view = bServ.updateBoard(files, board, session, rttr);
+        return view;
+    }
+
+
 //    @GetMapping("updateForm")
 //    public ModelAndView updateForm(int b_num) {
 //        log.info("updateForm()");
 //        ModelAndView mv = bServ.updateBoard(b_num);
 //        return mv;
 //    }
-//
+
 //    @PostMapping("updateProc")
 //    public String updateProc(List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
 //        log.info("updateProc()");
 //        String view = bServ.updateBoard(files, board, session, rttr);
 //        return view;
 //    }
+
     @GetMapping("rCategory")
     public String rCategory() {
         log.info("rCategory()");
@@ -121,4 +118,10 @@ public class BoardController {
         //정보를 model에 넣기
         return "reservForm";
     }
+    @GetMapping("detail")
+    public String detail(){
+        log.info("detail()");
+        return "detail";
+    }
 }
+

@@ -1,3 +1,4 @@
+<!--글쓰기 페이지-->
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -11,42 +12,44 @@
 <header>
     <th:block th:insert="~{fragments::header(${session.user})}"/>
 </header>
+<!-------------------------- 헤더부분---------------------------->
+
 <section>
 
     <div class="content">
-        <form th:action="@{writeProc}" class="write-form"
+        <form th:action="@{WriteProc}" class="write-form"
               method="post" enctype="multipart/form-data">
             <div class="user-info">
                 <div class="user-info-sub" th:object="${session.user}"></div>
             </div>
 
-            <h2 class="login-header">글쓰기</h2>
+            <h2 class="login-header">QnA 작성</h2>
 
             <!--작성자(로그인 한 id), 제목, 내용, 파일-->
 
-            <!--로그인 한 상태에서 글쓰기 권한 -->
-<!--            <input type="hidden" name="b_id"-->
-<!--                   th:value="${session.member.m_id}">-->
-            <input type="text" class="write-input" name="b_title"
+            <!--로그인 한 상태에서 글쓰기 권한-->
+            <input type="hidden" name="user_id"
+                   th:value="${session.user.user_id}">
+
+
+            <input type="text" class="write-input" name="qna_title"
                    autofocus placeholder="제목" required>
-            <textarea rows="15" name="b_contents"
-                      placeholder="내용을 적어주세요."
+            <textarea rows="15" name="qna_contents"
+                      placeholder="내용을 적어주세요." value="내용:"
                       class="write-input ta"></textarea>
 
-            <!--업로드부분-->
+            <!--파일 업로드부분-->
             <div class="filebox">
                 <label for="file">업로드</label>
                 <input type="file" name="files" id="file" multiple>
-                <input type="text" class="upload-name"
-                       value="파일선택" readonly>
+                <input type="text" class="upload-name" value="파일선택" readonly>
             </div>
 
-            <!--뒤로가기 수정 버튼-->
-            <div class="btn-area">
-                <input type="submit" class="btn-write" value="W">
-                <input type="reset" class="btn-write" value="R">
-                <input type="button" class="btn-write"
-                       value="B" id="backbtn">
+            <!--글쓰기 업로드 뒤로가기 수정 버튼-->
+            <div class="btn-area"> <!-- 업로드 수정 닫기 업로드 버튼-->
+                <input type="submit" class="btn-writeupload" value="upload">
+                <input type="reset" class="btn-writereset" value="reset">
+                <input type="button" class="btn-writeback" value="나가기" id="backbtn">
             </div>
 
         </form>
@@ -59,9 +62,11 @@
     <th:block th:insert="~{fragments::footer}"/>
 </footer>
 
-</body>
-<script th:inline="javascript">
+<!--footer-->
 
+</body>
+
+<script th:inline="javascript">
 
     //파일명 처리용 함수
     $("#file").on("change", function () {

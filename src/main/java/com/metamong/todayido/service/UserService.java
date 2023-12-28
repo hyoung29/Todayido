@@ -39,15 +39,15 @@ public class UserService {
         try {
             uDao.insertUser(user);
             msg = "가입 성공";
-            view = "redirect:joinForm";
+            view = "redirect:loginForm";
         } catch (Exception e){
             e.printStackTrace();
         }
         rttr.addFlashAttribute("msg", msg);
         return view;
     }
-    public String loginProc(UserDto user, HttpSession session, RedirectAttributes rttr){
-        log.info("loginProc()");
+    public String userloginProc(UserDto user, HttpSession session, RedirectAttributes rttr){
+        log.info("userloginProc()");
         String view = null;
         String msg = null;
 

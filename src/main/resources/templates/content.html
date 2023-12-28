@@ -1,99 +1,145 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>콘텐츠 정보 보기</title>
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <script th:inline="javascript">
+    <!-- bxSlider용 라이브러리 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script>
         $(function () {
-            let m = [[${msg}]];
+            //bxSlider 설정
+            $(".sld").bxSlider({
+                auto: false, //수동 순환
+                slideWidth: 600 //슬라이더 가로 길이.
+            });
+
+            //메시지 출력
+            let m = null;
             if(m != null){
                 alert(m);
             }
-        })
+        });
     </script>
 </head>
 <body>
 <header>
     <th:block th:insert="~{fragments::header(${session.user})}"/>
 </header>
-
 <section>
-    <div class="content">
-        <div class="login-form">
-            <img src="images/sungdak.png" style="width: 900px; height: auto;">
-            <h1>성원닭갈비</h1><p>(4.1)</p>
-            <div class="12345678" style="width: 159px; height: 35px; color: black; font-size: 20px; font-weight: 600; word-wrap: break-word">010-1234-5678</div>
-            <div style="color: black;font-size: 20px;font-family: Inter;font-weight: bold;width: 100px;height: 1px;word-wrap: break-word;">대표메뉴</div>
-            <div class="slider-container">
-                <div class="Rectangle92">
-                    <!-- 이미지 추가 -->
-                    <img src="images/dak.png" alt="추천 메뉴">
+    <div class="cView">
+        <div class="c-dak">
+                <img src="images/sungdak.png" alt="성원닭갈비">
+                <h1 style="font-size: 35px; margin-top: -2px">성원닭갈비<span style="color: #005224; font-size: 25px">(4.1)</span></h1>
+                <div class="stats" style="font-size: medium; line-height: 1px; margin-top: -55px">
+                    <p>조회 수: 100 회</p>
+                    <p>예약: 50 회</p>
+                    <p>찜: 80 회</p>
                 </div>
-                <button id="prevBtn">
-                    <!-- 화살표 아이콘 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button id="nextBtn">
-                    <!-- 화살표 아이콘 -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M10.59 16.59L12 18l6-6-6-6-1.41 1.41L15.17 12z"/>
-                    </svg>
-                </button>
+            <h4 style="margin-top: -20px;">010-7793-2058</h4>
+            <h3>대표메뉴</h3>
+            <div class="sld">
+                <div><img src="images/dak.jpg"></div>
+                <div><img src="images/sdk.jpg"></div>
             </div>
-            <script>
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-                const slider = document.querySelector('.Rectangle92');
 
-                let slideIndex = 0; // 슬라이드 인덱스 초기값 설정
-
-                // 슬라이드 이동 함수
-                function showSlide(n) {
-                    const slides = document.querySelectorAll('.Rectangle92 img');
-                    if (n >= slides.length) {
-                        slideIndex = 0;
+            <!-- 메뉴판, 가격, 설명-->
+            <div class="cont-menu">
+                <style>
+                    .cont-menu {
+                        border-radius: 40px;
+                        background: #D9D9D9;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        align-items: center;
+                        width: 100%;
+                        height: 250px;
+                        margin-top: 80px;
                     }
-                    if (n < 0) {
-                        slideIndex = slides.length - 1;
+                    .cont-menu .mnu, .cont-menu .pay, .cont-menu .com {
+                        font-family: Inter;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        text-align: center;
+                        word-wrap: break-word;
+                        padding: 20px;
+                        flex: 1;
+                        margin: 0 1px 150px;
+                        flex-direction: column;
+                        box-sizing: border-box;
                     }
-                    slides.forEach(slide => {
-                        slide.style.display = 'none';
-                    });
-                    slides[slideIndex].style.display = 'block';
-                }
+                    .cont-menu .mnu p,
+                    .cont-menu .pay p,
+                    .cont-menu .com p {
+                        margin: 10px 0;
+                        white-space: nowrap;
+                    }
+                    .mu {
+                        border-bottom: solid #5b5b5b;
+                    }
+                    .nn {
+                        color: #555555;
+                    }
+                    .ttl {
+                        text-align: left;
+                    }
+                </style>
 
-                // 초기 슬라이드 표시
-                showSlide(slideIndex);
+                <div class="cont-menu">
+                    <div class="mnu">
+                        <p class="mu">메뉴</p>
+                        <div class="ttl">
+                            <p class="nn" style="font-size: 18px">뼈 있는 불 닭갈비</p>
+                            <p class="nn" style="font-size: 18px">순살 불 닭갈비</p>
+                            <p class="nn" style="font-size: 18px">볶음밥</p>
+                        </div>
+                    </div>
+                    <div class="pay">
+                        <p class="mu">가격</p>
+                        <p class="nn" style="font-size: 18px">20,000원</p>
+                        <p class="nn" style="font-size: 18px">25,000원</p>
+                        <p class="nn" style="font-size: 18px">2000원</p>
+                    </div>
+                    <div class="com" style="margin-top: -10px">
+                        <p class="mu">설명</p>
+                        <div class="ttl">
+                            <p class="nn" style="font-size: 15px">뜨끈한 국물 닭갈비가 땡길 때</p>
+                            <p class="nn" style="font-size: 15px">부드러운 닭다리살이 매력있는<span style="color: #FF2C00"> 추천</span><img src="images/free-icon-like-10904422.png"></p>
+                            <p class="nn" style="font-size: 15px">닭갈비+볶음밥=♥ 말이 필요 없는 조합</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                // 이전, 다음 버튼 클릭 이벤트 처리
-                prevBtn.addEventListener('click', () => {
-                    showSlide(--slideIndex);
-                });
+            <!-- 가게 영업 시간-->
+            <div class="store-hour">
+                <style>
+                    .store-hour {
+                        width: 679px;
+                        height: 140px;
+                        border-radius: 40px;
+                        background: #D9D9D9;
+                        margin-top: 80px;
+                    }
+                </style>
 
-                nextBtn.addEventListener('click', () => {
-                    showSlide(++slideIndex);
-                });
-            </script>
-
-            <div class="Rectangle88"></div>
-            <div class="Rectangle87"></div>
-            <div class="Rectangle86"></div>
-            <button class="Rectangle85" style="width: 150px;height: 44px;background: #7F7F7F;border-radius: 6.55px;">리뷰작성</button>
-            <div class="Rectangle91"></div>
-            <div class="Rectangle94" style="color: #FFF;font-family: Inter;font-size: 20px;font-style: normal;font-weight: 600;line-height: 50px;">김태욱</div>
-            <div class="Rectangle95" style="width: 100%; height: 100%; background: #7F7F7F; border-radius: 11.67px"></div>
+                <div class="store-hour">
+                    <div class="sh">
+                        <8>영업 시간</8>
+                    </div>
+            </div>
         </div>
     </div>
 </section>
 <footer>
-    <th:block th:insert="~{fragments::footer}" />
+    <th:block th:insert="~{fragments::footer}"/>
 </footer>
 </body>
 </html>
+
+
