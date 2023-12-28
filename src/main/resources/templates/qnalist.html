@@ -7,25 +7,16 @@
     <title>TodayIdo</title>
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
+
 <header>
     <th:block th:insert="~{fragments::header(${session.user})}"/>
 </header>
 
 <!------------------------------ 헤더 ------------------------------>
 
-<section>
-    <script th:inline="javascript">
-        const mem = [[${session.member}]];
-        function gohome() {
-            if (mem != null) {                                     //로그인 한 상태
-                location.href = "qnalist?pageNum=1";
-            } else {                                               //로그인 안한 상태
-                location.href = "/";
-            }
-        }
-    </script>
 
     <div class="qnalist-form">
         <h2 class="login-header">문의사항</h2>
@@ -41,7 +32,7 @@
                     </option>
                 </select>
 
-                <input type="text" id="keyword-list">
+                <input type="text" id="keyword">
                 <button id="search">검색</button>
             </div>
         </div>
@@ -52,6 +43,7 @@
                 <div class="t-title p-30">제목</div>
                 <div class="t-name p-15">작성자</div>
                 <div class="t-date p-30">작성일</div>
+
             </div>
 
             <div class="data-row">
@@ -86,7 +78,11 @@
     <th:block th:insert="~{fragments::footer}"/>
 </footer>
 </body>
+
+
+
 <script>
+
     $("#search").click(function () {
         //사용자가 입력한 검색 키워드를 가져온다.
         let keyword = $("#keyword").val();
@@ -96,9 +92,10 @@
         }
         let select = $("#sel").val();
         //검색용 uri 생성 및 실행(location.href)
-        location.href = `/qnaWrite?colname=${select}&keyword=${keyword}&pageNum=1`
+        location.href = `/qnalist?colname=${select}&keyword=${keyword}&pageNum=1`
     });
 
+    <!--작성하기 버튼 누르면 글 작성 페이지로 이동-->
     $("#write").click(function () {
         location.href = "qnaWrite";
     });

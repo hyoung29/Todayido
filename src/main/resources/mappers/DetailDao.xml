@@ -8,3 +8,4 @@
     <select id="selectreview" resultType="ReviewDto" parameterType="Integer">
         SELECT * FROM review WHERE store_num=#{store_num}
     </select>
+</mapper>

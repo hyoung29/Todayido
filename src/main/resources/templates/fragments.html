@@ -37,10 +37,10 @@
         </nav>
     </div>
     <script th:inline="javascript">
-        const mem = [[${session.member}]];
+        const mem = [[${session.user}]];
         function gohome(){
             if(mem != null){
-                location.href = "boardList?pageNum=1";
+                location.href = "qnalist?pageNum=1";
             } else {
                 location.href = "/";
             }

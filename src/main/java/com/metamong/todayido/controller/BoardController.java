@@ -72,7 +72,7 @@ public class BoardController {
     }
 
     //글 수정 프로세스
-    @PostMapping("UpdateProc")
+    @PostMapping("updateProc")
     public String updateBoard(@RequestPart List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
         log.info("UpdateProc()");
         String view = bServ.updateBoard(files, board, session, rttr);
