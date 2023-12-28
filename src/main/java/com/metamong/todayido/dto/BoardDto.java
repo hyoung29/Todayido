@@ -8,11 +8,11 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class BoardDto {
-    private int b_num;
-    private String b_title;
-    private String b_contents;
-    private String b_id;
-    private String m_name;
-    private Timestamp b_date;
-    private int b_views;
+    private int qna_num;
+    private String qna_title;
+    private String qna_contents;
+    private String user_id;
+    private String create_at;
+    private Timestamp update_at;
+    private String qna_reply;
 }

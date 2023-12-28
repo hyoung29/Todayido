@@ -8,6 +8,6 @@ import lombok.Setter;
 public class SearchDto {
     private String colname;
     private String keyword;
-    private int pageNum;
+    private int pageNum=1;
     private int listCnt;
 }

@@ -17,7 +17,7 @@
 <section>
 
     <div class="content">
-        <form th:action="@{writeProc}" class="write-form"
+        <form th:action="@{WriteProc}" class="write-form"
               method="post" enctype="multipart/form-data">
             <div class="user-info">
                 <div class="user-info-sub" th:object="${session.user}"></div>
@@ -27,15 +27,15 @@
 
             <!--작성자(로그인 한 id), 제목, 내용, 파일-->
 
-            <!--로그인 한 상태에서 글쓰기 권한 -->
-            <!--            <input type="hidden" name="b_id"-->
-            <!--                   th:value="${session.member.m_id}">-->
+            <!--로그인 한 상태에서 글쓰기 권한-->
+            <input type="hidden" name="user_id"
+                   th:value="${session.user.user_id}">
 
 
-            <input type="text" class="write-input" name="b_title"
+            <input type="text" class="write-input" name="qna_title"
                    autofocus placeholder="제목" required>
-            <textarea rows="15" name="b_contents"
-                      placeholder="내용을 적어주세요."
+            <textarea rows="15" name="qna_contents"
+                      placeholder="내용을 적어주세요." value="내용:"
                       class="write-input ta"></textarea>
 
             <!--파일 업로드부분-->
@@ -90,4 +90,3 @@
 
 </script>
 </html>
-QNAWRITE

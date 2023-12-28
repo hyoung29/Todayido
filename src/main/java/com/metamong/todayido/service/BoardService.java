@@ -33,6 +33,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+
 public class BoardService {
 
     @Autowired
@@ -75,7 +76,7 @@ public class BoardService {
         //별개로 페이지번호 저장
         session.setAttribute("pageNum", num);
 
-        mv.setViewName("boardList");
+        mv.setViewName("qnalist");
         return mv;
     }
 
@@ -84,10 +85,10 @@ public class BoardService {
         //전체 글개수 구하기(from DB)
         int maxNum = bDao.selectBoardCnt(sdto);
         //페이지에 보여질 번호 개수
-        int pageCnt = 5;
+        int pageCnt = 10;
         //링크용 uri : 기본 - "boardList?
         // 검색 - "boardList?colname=b_title&keyword=4&
-        String listName = "boardList?";
+        String listName = "qnalist?";
 
         PagingUtil paging = new PagingUtil(maxNum, sdto.getPageNum(), sdto.getListCnt(), pageCnt, listName);
 
@@ -107,13 +108,13 @@ public class BoardService {
         try {
             //글 내용 저장.
             bDao.insertBoard(board);
-            log.info("게시글 번호 : " + board.getB_num());
+            log.info("게시글 번호 : " + board.getQna_num());
 
             //파일 저장(파일 정보 저장)
-            fileUpload(files, session, board.getB_num());
+            //fileUpload(files, session, board.getQna_num());
 
             manager.commit(status);//최종 승인
-            view = "redirect:boardList?pageNum=1";
+            view = "redirect:qnalist?pageNum=1";
             msg = "작성 성공";
         } catch (Exception e) {
             e.printStackTrace();
@@ -168,13 +169,12 @@ public class BoardService {
         BoardDto board = bDao.selectBoard(b_num);
         mv.addObject("board", board);
         //게시글의 파일목록 가져오기
-        List<BoardFileDto> bfList = bDao.selectFileList(b_num);
-        mv.addObject("bfList", bfList);
+        //List<BoardFileDto> bfList = bDao.selectFileList(b_num);
+        //mv.addObject("bfList", bfList);
         //게시글의 댓글목록 가져오기
-        List<ReviewDto> rList = bDao.selectReplyList(b_num);
-        mv.addObject("rList", rList);
-
-        mv.setViewName("boardDetail");
+        //List<ReviewDto> rList = bDao.selectReplyList(b_num);
+        //mv.addObject("rList", rList);
+        mv.setViewName("qnalist");
         return mv;
     }
 
@@ -201,7 +201,6 @@ public class BoardService {
         try {
             //0. 파일 삭제 목록 구하기
             List<String> fList = bDao.selectFnameList(b_num);
-
             //1. 파일 목록 삭제
             bDao.deleteFiles(b_num);
             //1. 댓글 목록 삭제
@@ -241,18 +240,18 @@ public class BoardService {
         }
     }
 
-    public ModelAndView updateBoard(int b_num) {
+    public ModelAndView updateBoard(int qna_num) {
         log.info("updateBoard()");
         ModelAndView mv = new ModelAndView();
         //게시글 내용 가져오기
-        BoardDto board = bDao.selectBoard(b_num);
+        BoardDto board = bDao.selectBoard(qna_num);
         //파일 목록 가져오기
-        List<BoardFileDto> fList = bDao.selectFileList(b_num);
+        //List<BoardFileDto> fList = bDao.selectFileList(qna_num);
 
         mv.addObject("board", board);
-        mv.addObject("fList", fList);
+        //mv.addObject("fList", fList);
         //템플릿 지정
-        mv.setViewName("updateForm");
+        mv.setViewName("qnaEdit");
         return mv;
     }
     public List<BoardFileDto> delFile(BoardFileDto bFile, HttpSession session){
@@ -282,14 +281,14 @@ public class BoardService {
         String msg = null;
         try {
             bDao.updateBoard(board);
-            fileUpload(files, session, board.getB_num());
+            fileUpload(files, session, board.getQna_num());
             manager.commit(status);
-            view = "redirect:boardDetail?b_num=" + board.getB_num();
+            view = "redirect:qnalist?qna_num=" + board.getQna_num();
             msg = "수정 성공";
         } catch (Exception e) {
             e.printStackTrace();
             manager.rollback(status);
-            view = "redirect:updateForm?b_num=" + board.getB_num();
+            view = "redirect:qnaEdit?qna_num=" + board.getQna_num();
             msg = "수정 실패";
         }
         rttr.addFlashAttribute("msg", msg);
