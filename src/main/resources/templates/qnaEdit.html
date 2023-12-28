@@ -31,12 +31,12 @@
             <input type="hidden" name="user_id"
                    th:value="${session.user.user_id}">
 
-
+            <input type="hidden" name="qna_num" th:value="${board.qna_num}">
             <input type="text" class="write-input" name="qna_title"
-                   autofocus placeholder="제목" required>
+                   autofocus placeholder="제목" required th:value="${board.qna_title}">
             <textarea rows="15" name="qna_contents"
                       placeholder="내용을 적어주세요." value="내용:"
-                      class="write-input ta"></textarea>
+                      class="write-input ta" th:text="${board.qna_contents}"></textarea>
 
             <!--파일 업로드부분-->
             <div class="filebox">
@@ -49,7 +49,7 @@
             <div class="btn-area"> <!-- 업로드 수정 닫기 업로드 버튼-->
                 <input type="submit" class="btn-writeedit" value="Edit">
                 <input type="reset" class="btn-writereset" value="reset">
-                <input type="button" class="btn-writeback" value="나가기" id="backbtn">
+                <input type="button" class="btn-writeback" value="out" id="backbtn">
             </div>
 
         </form>

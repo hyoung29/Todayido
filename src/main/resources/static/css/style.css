@@ -524,6 +524,7 @@ section {
 	font-weight: bold;
 	color: black;
 	margin-top: 10px;
+	padding: 2px;
 
 }
 
@@ -627,14 +628,15 @@ section {
 }
 
 .d-in-row:nth-child(even) > div {
-	background-color: rgba(252, 187, 187, 0.87);
+	background-color: darkgrey;
 }
 
 .data-area {
 	margin: auto;
 	margin-bottom: 10px;
-	width: 100%;
+	width: auto;
 	float: none;
+
 }
 
 .btn-area .paging {
@@ -647,14 +649,13 @@ section {
 
 .paging .pno {
 	display: inline-block;
-	background-color: #efefef;
 	margin: 2px;
-	border: 1px solid #6c6c6c;
 	border-radius: 3px;
 	line-height: 1.8;
 	font-size: 15px;
 	height: 30px;
 	width: 30px;
+	color: #246C34;
 
 }
 
@@ -676,7 +677,6 @@ font.pno {
 
 .btn-area {
 	margin: 0px auto;
-	width: 300px;
 	text-align: center;
 }
 
@@ -710,7 +710,7 @@ span.file-title {
 }
 
 .p-30 {
-	width: 30%;
+	width: 35%;
 }
 
 .p-35 {
@@ -823,7 +823,6 @@ span.file-title {
 }
 
 .filebox label {
-	display: inline-block;
 	padding: 10px 20px;
 	color: #999;
 	vertical-align: middle;
@@ -1101,45 +1100,86 @@ label.form-label {
 .btn-writeupload {
 	padding: 10px 16px;
 	font-size: 24px;
-	line-height: 1.5;
-	color: #fff;
+	color: #FFF;
 	border-color: #57442E;
 	margin-top: 10px;
 	border-radius: 20px;
 	background: #57442E;
+	width: 118px;
+	height: 53px;
+	flex-shrink: 0;
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+
 }
 
 .btn-writereset {
 	padding: 10px 16px;
 	font-size: 24px;
-	line-height: 1.5;
-	color: #fff;
+	color: #FFF;
 	border-color: #A48868;
 	margin-top: 10px;
 	border-radius: 20px;
 	background: #A48868;
+	width: 118px;
+	height: 53px;
+	flex-shrink: 0;
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+
 }
 
 .btn-writeback {
 	padding: 10px 16px;
 	font-size: 24px;
-	line-height: 1.5;
-	color: #fff;
+	color: #FFF;
 	border-color: #487657;
 	margin-top: 10px;
 	border-radius: 20px;
 	background: #487657;
+	width: 118px;
+	height: 53px;
+	flex-shrink: 0;
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.btn-writeedit {
+	padding: 10px 16px;
+	font-size: 24px;
+	color: #FFF;
+	margin-top: 10px;
+	border-radius: 20px;
+	border-color: #57442E;
+	background: #57442E;
+	width: 118px;
+	height: 53px;
+	flex-shrink: 0;
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
 }
 
 .wr-btn {
-	width: 100px;
-	height: 50px;
+	padding: 10px 16px;
+	font-size: 24px;
+	width: 130px;
+	height: 53px;
 	flex-shrink: 0;
 	border-radius: 15px;
 	background: #CBE6D1;
 	border-color: #CBE6D1;
 	margin-left: 800px;
-	margin-top: 100px;
+	margin-top: 10px;
+	border: none;
+	text-align: center;
+	font-style: normal;
+	font-weight: 700;
+	color: black;
+	line-height: normal;
 }
 
 .qnalist-form {
@@ -1210,4 +1250,22 @@ label.form-label {
 	text-indent: -9999px;
 	z-index: 9999;
 }
+#keyword-title{
+	width: 150px;
+	height: 25px;
+	flex-shrink: 0;
+	border-radius: 32.8px;
+	border: 0.656px solid #000;
+	background: #FFF;
 
+}
+
+#sel{
+	width: 75px;
+	height: 25px;
+	flex-shrink: 0;
+	border-radius: 15px;
+	border: 0.656px solid #000;
+	background: #FFF;
+	text-align: center;
+}
