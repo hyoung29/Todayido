@@ -9,7 +9,12 @@ import java.util.List;
 @Mapper
 public interface DetailDao {
     //스토어 가져오는 메소드
-    List<StoreDto> selectStore(int storeNum);
+    StoreDto selectStore(int store_num);
 
-    List<ReviewDto> selectreview(int storeNum);
+    List<ReviewDto> selectReview(int store_num);
+
+
+    void insertReview(ReviewDto review);
+
+    ReviewDto selectLastReview(int review_num);
 }

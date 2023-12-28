@@ -1,7 +1,9 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.BoardFileDto;
+import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.service.BoardService;
+import com.metamong.todayido.service.DetailService;
 import com.metamong.todayido.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,10 @@ public class BoardRestController {
 
     @Autowired
     private BoardService bServ;
+
+    @Autowired
+    private DetailService dServ;
+
     @GetMapping("idCheck")
     public String idCheck(String user_id){
         log.info("idCheck()");
@@ -32,10 +38,10 @@ public class BoardRestController {
         List<BoardFileDto> fList = bServ.delFile(bFile, session);
         return fList;
     }
-//    @PostMapping("replyInsert")
-//    public ReviewDto replyInsert(ReviewDto reply){
-//        log.info("replyInsert()");
-//        reply = bServ.replyInsert(reply);
-//        return reply;
-//    }
+    @PostMapping("ReviewInsert")
+    public ReviewDto ReviewInsert(ReviewDto review){
+        log.info("ReviewInsert");
+        review = dServ.ReviewInsert(review);
+        return review;
+    }
 }

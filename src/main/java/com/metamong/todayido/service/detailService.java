@@ -12,21 +12,33 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class detailService {
+public class DetailService {
     @Autowired
     private DetailDao dDao;
 
     public ModelAndView getReview(int store_num){
         log.info("getReview()");
         ModelAndView mv = new ModelAndView();
-        List<StoreDto> sList = dDao.selectStore(store_num);
-        mv.addObject("sList", sList);
-        List<ReviewDto> rList = dDao.selectreview(store_num);
+        StoreDto store = dDao.selectStore(store_num);
+        mv.addObject("store", store);
+
+        List<ReviewDto> rList = dDao.selectReview(store_num);
         mv.addObject("rList", rList);
 
         mv.setViewName("detail");
         return mv;
     }
 
+    public ReviewDto ReviewInsert(ReviewDto review) {
+        log.info("ReviewInsert");
 
+        try {
+            dDao.insertReview(review);
+            review = dDao.selectLastReview(review.getReview_num());
+        } catch (Exception e){
+            e.printStackTrace();
+            review = null;
+        }
+        return review;
+    }
 }
