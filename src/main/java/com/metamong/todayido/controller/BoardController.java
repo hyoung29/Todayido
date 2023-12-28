@@ -125,5 +125,10 @@ public class BoardController {
         //정보를 model에 넣기
         return "reservForm";
     }
+    @GetMapping("detail")
+    public String detail(){
+        log.info("detail()");
+        return "detail";
+    }
 }
 

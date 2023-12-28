@@ -1,19 +1,18 @@
 package com.metamong.todayido.controller;
+
 import com.metamong.todayido.dto.ReservDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
 import java.util.Map;
 
-// Reservation 클래스 정의
-
-
 @Slf4j
 @Controller
-@RequestMapping("/reservation")
 public class ReservFormController {
 
     private ReservDto reservation = new ReservDto();

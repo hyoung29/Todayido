@@ -232,7 +232,7 @@ section {
 	background-color: white;
 }
 .bx-wrapper {
-	display: flex;
+    display: flex;
 	margin: 50px auto;
 }
 .bx-wrapper img {
@@ -361,6 +361,7 @@ section {
 
 .login-form {
 	background-color: white;
+	opacity: 80%;
 	text-align: center;
 	max-width: fit-content;
 	max-height: fit-content;
@@ -368,7 +369,7 @@ section {
 	margin: 50px auto;
 }
 
-.login-input{
+.login-input {
 	display: block;
 	position: relative;
 	width: 350px;
@@ -380,11 +381,10 @@ section {
 	border-radius: 10px;
 }
 
-
-
 .find a {
-	margin: 7px 10px 0 0;
+	margin: 20px 10px 0 0;
 	float: left;
+	font-size: 12px;
 	text-decoration: none;
 	padding: 5px;
 	color: white;
