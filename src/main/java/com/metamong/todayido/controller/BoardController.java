@@ -3,6 +3,7 @@ package com.metamong.todayido.controller;
 import com.metamong.todayido.dto.BoardDto;
 import com.metamong.todayido.dto.SearchDto;
 import com.metamong.todayido.service.BoardService;
+import com.metamong.todayido.service.DetailService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ import java.util.List;
 
 //메인페이지에서 문의사항클릭하면 문의사항 리스트 페이지로 이동
 public class BoardController {
+
+    @Autowired
+    private DetailService dServ;
 
     // 글쓰기 폼 페이지
     @GetMapping("qnaWrite")
@@ -120,9 +124,10 @@ public class BoardController {
         return "reservForm";
     }
     @GetMapping("detail")
-    public String detail(){
+    public ModelAndView detail(int store_num){
         log.info("detail()");
-        return "detail";
+        ModelAndView mv = dServ.getReview(store_num);
+        return mv;
     }
 }
 
