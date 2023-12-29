@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class StoreService {
@@ -16,8 +18,8 @@ public class StoreService {
     public ModelAndView getStore(int store_num){
         log.info("getStore");
         ModelAndView mv = new ModelAndView();
-        StoreDto store = dDao.selectStore(store_num);
-        mv.addObject("store", store);
+        List<StoreDto> sList = dDao.selectStore(store_num);
+        mv.addObject("sList", sList);
         return mv;
     }
 
