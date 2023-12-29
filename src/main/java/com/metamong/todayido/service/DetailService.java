@@ -4,7 +4,6 @@ import com.metamong.todayido.dao.DetailDao;
 import com.metamong.todayido.dto.ReviewDto;
 import com.metamong.todayido.dto.StoreDto;
 import com.metamong.todayido.dto.ReviewFileDto;
-import com.metamong.todayido.dto.StoreDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

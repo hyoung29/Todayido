@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface DetailDao {
     //스토어 가져오는 메소드
-    StoreDto selectStore(int store_num);
+    List<StoreDto> selectStore(int store_num);
 
     List<ReviewDto> selectReview(int store_num);
 
