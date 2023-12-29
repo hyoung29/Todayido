@@ -1,14 +1,16 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.ReservDto;
+import com.metamong.todayido.dto.StoreDto;
+import com.metamong.todayido.service.StoreService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class ReservFormController {
+    @Autowired
+    private StoreService sServ;
 
     private ReservDto reservation = new ReservDto();
 
@@ -54,15 +58,15 @@ public class ReservFormController {
     }
 
     @GetMapping("/map")
-    public String map(int a, int b, Model model){
+    public ModelAndView map(int a, int b, Model model, int store_num){
         log.info("map");
         Map<String, Integer> lmap = new HashMap<>();
         lmap.put("a", a);
         lmap.put("b", b);
         model.addAttribute("lmap", lmap);
-        return "map";
+        ModelAndView mv = sServ.getStore(store_num);
+        return mv;
     }
 
-//    @PostMapping("reviewProc")
-//    public String reviewProc(@RequestPart List<MultipartFile> files, )
+
 }

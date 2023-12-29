@@ -11,7 +11,7 @@ public class UserDto {
     private String user_id;
     private String user_name;
     private String user_password;
-    private String user_pnum;
+    private String user_num;
     private Timestamp created_at;
     private Timestamp updated_at;
     private String user_address;

@@ -84,19 +84,19 @@ public class BoardController {
     }
 
 
-//    @GetMapping("updateForm")
-//    public ModelAndView updateForm(int b_num) {
-//        log.info("updateForm()");
-//        ModelAndView mv = bServ.updateBoard(b_num);
-//        return mv;
-//    }
+    @GetMapping("updateForm")
+    public ModelAndView updateForm(int b_num) {
+        log.info("updateForm()");
+        ModelAndView mv = bServ.updateBoard(b_num);
+        return mv;
+    }
 
-//    @PostMapping("updateProc")
-//    public String updateProc(List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
-//        log.info("updateProc()");
-//        String view = bServ.updateBoard(files, board, session, rttr);
-//        return view;
-//    }
+    @PostMapping("updateProc")
+    public String updateProc(List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
+        log.info("updateProc()");
+        String view = bServ.updateBoard(files, board, session, rttr);
+        return view;
+    }
 
     @GetMapping("rCategory")
     public String rCategory() {
@@ -125,7 +125,7 @@ public class BoardController {
     @GetMapping("reservForm")
     public String reservForm(int store_num, Model model) {
         log.info("reservForm()");
-        //DB에서 가계 정보(dto 등) 가져오기
+        //DB에서 가게 정보(dto 등) 가져오기
         //정보를 model에 넣기
         return "reservForm";
     }
