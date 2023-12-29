@@ -43,4 +43,9 @@ public class OwnerController {
         log.info("pindex");
         return "pindex";
     }
+    @GetMapping("ownerPage")
+    public String ownerPage(){
+        log.info("ownerPage()");
+        return "ownerPage";
+    }
 }
