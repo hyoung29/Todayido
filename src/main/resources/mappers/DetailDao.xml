@@ -8,6 +8,10 @@
         INSERT INTO review
         VALUES (null, #{user_id}, #{store_num}, #{rating}, #{review_text}, default, default, default)
     </insert>
+    <insert id="insertRfile" parameterType="reviewFileDto">
+        INSERT INTO reviewFile
+        VALUES (NULL, #{reviewfile_num}, #{rv_oriname}, #{rv_sysname})
+    </insert>
 
     <select id="selectStore" resultType="StoreDto" parameterType="Integer">
         SELECT * FROM store WHERE store_num=#{store_num}

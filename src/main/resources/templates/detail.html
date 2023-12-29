@@ -115,7 +115,7 @@
     <!--  리뷰 등록  -->
     <div class="modalbg">
         <div class="modal">
-            <form id="rform">
+            <form th:action="@{reviewProc}" id="rform">
                 <input type="hidden" name="user_id" th:value="${session.user.user_id}">
                 <input type="hidden" name="store_num" th:value="${store.store_num}">
                 <h3 class="rev_text">리뷰작성</h3>
