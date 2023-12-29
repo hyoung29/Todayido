@@ -1,7 +1,6 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.UserDto;
-import com.metamong.todayido.service.DetailService;
 import com.metamong.todayido.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +17,6 @@ public class UserController {
     @Autowired
     private UserService uServ;
 
-    @Autowired
-    private DetailService dServ;
     @GetMapping("/")
     public String home(){
         log.info("home()");
@@ -62,13 +59,6 @@ public class UserController {
     public String findPw(){
         log.info("findPw()");
         return "findPw";
-    }
-
-    @GetMapping("detail")
-    public ModelAndView detail(int store_num){
-        log.info("detail()");
-        ModelAndView mv = dServ.getReview(store_num);
-        return mv;
     }
     @GetMapping("myPage")
     public String myPage(){

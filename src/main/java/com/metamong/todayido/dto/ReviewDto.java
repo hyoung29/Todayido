@@ -14,8 +14,9 @@ public class ReviewDto {
     private int store_num;
     private int rating;
     private String review_text;
-    private String owner_review_comment;
-    @JsonFormat(pattern = "yyyy-mm-dd:mm:ss", timezone = "Asia/Seoul")
+    private String ower_review_comment;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private Timestamp crated_at;
     private Timestamp update_at;
     private String rv_oriname;

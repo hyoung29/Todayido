@@ -115,7 +115,7 @@
     <!--  리뷰 등록  -->
     <div class="modalbg">
         <div class="modal">
-            <form id="rform">
+            <form th:action="@{reviewProc}" id="rform">
                 <input type="hidden" name="user_id" th:value="${session.user.user_id}">
                 <input type="hidden" name="store_num" th:value="${store.store_num}">
                 <h3 class="rev_text">리뷰작성</h3>
@@ -152,6 +152,13 @@
                 <div id="rSpace" class="r_d">
                     <div>
                         <div th:text="${rev.user_id}"></div>
+                        <div th:switch="${rev.rating}">
+                            <span th:case="1">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                            <span th:case="2">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                            <span th:case="3">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+                            <span th:case="4">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                            <span th:case="5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        </div>
                         <div th:text="${rev.review_text}"></div>
                         <div th:text="${rev.crated_at}"></div>
                     </div>
@@ -198,7 +205,7 @@
         console.log(rForm);
         //restController에 전송
         $.ajax({
-            url: "reservation/reviewInsert",
+            url: "ReviewInsert",
             type: "post",
             data: rForm,
             success: function (res) {
@@ -210,12 +217,30 @@
                         <div id="rSpace" class="r_d">
                             <div>
                                 <div>${res.user_id}</div>
+                    `;
+                    switch(res.rating){
+                        case 1:
+                            str += `<span>&#9733;&#9734;&#9734;&#9734;&#9734;</span>`;
+                            break;
+                        case 2:
+                            str += `<span>&#9733;&#9733;&#9734;&#9734;&#9734;</span>`;
+                            break;
+                        case 3:
+                            str += `<span>&#9733;&#9733;&#9733;&#9734;&#9734;</span>`;
+                            break;
+                        case 4:
+                            str += `<span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>`;
+                            break;
+                        default:
+                            str += `<span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>`;
+                    }
+                    str += `
                                 <div>${res.review_text}</div>
                                 <div>${res.crated_at}</div>
                             </div>
-                    <img src="images/mesikdang.png" class="r_photo">
-                </div>
-            </div>
+                            <img src="images/mesikdang.png" class="r_photo">
+                        </div>
+                    </div>
                     `;
                     $("#rs").prepend(str);
                     //$("#comment").val("");
