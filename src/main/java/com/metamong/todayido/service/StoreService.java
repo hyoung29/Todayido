@@ -20,6 +20,8 @@ public class StoreService {
         ModelAndView mv = new ModelAndView();
         List<StoreDto> sList = dDao.selectStore(store_num);
         mv.addObject("sList", sList);
+
+
         return mv;
     }
 
