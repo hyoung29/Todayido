@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.metamong.todayido.dao.BoardDao">
 
-<!--    파일 정보 저장 DAO-->
+<!--파일 정보 저장 DAO-->
     <insert id="insertBoard" parameterType="boardDto" useGeneratedKeys="true" keyProperty="qna_num">
         <selectKey keyProperty="qna_num" resultType="Integer" order="AFTER">
             SELECT LAST_INSERT_ID()
@@ -10,17 +10,17 @@
         INSERT INTO qna VALUES (NULL,#{qna_title},#{qna_contents},#{user_id},DEFAULT,DEFAULT,DEFAULT)
     </insert>
 
-<!--    게시글 하나만 가져오는 DAO-->
+<!--게시글 하나만 가져오는 DAO-->
     <insert id="insertFile" parameterType="boardFileDto">
         INSERT INTO boardfile VALUES (NULL,#{bf_bnum},#{bf_oriname},#{bf_sysname})
     </insert>
 
-<!--    리뷰 삽입 DAO-->
+<!--리뷰 삽입 DAO-->
     <insert id="insertReview" parameterType="ReviewDto" useGeneratedKeys="true" keyProperty="review_num">
         <selectKey keyProperty="review_num" resultType="Integer" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO review VALUES (DEFAULT,#{user_id},#{store_num},#{rating},#{review_text},#{ower_review_comment},DEFAULT,DEFAULT,#{position_x},#{position_y})
+        INSERT INTO review VALUES (DEFAULT,#{user_id},#{store_num},#{rating},#{review_text},#{ower_review_comment},DEFAULT,DEFAULT)
     </insert>
 
 <!--게시글 수정 DAO-->
@@ -28,28 +28,28 @@
         UPDATE qna SET qna_title=#{qna_title},qna_contents=#{qna_contents} WHERE qna_num=#{qna_num}
     </update>
 
-<!--    게시판 삭제-->
+<!--게시판 삭제-->
     <delete id="deleteBoard" parameterType="Integer">
         DELETE FROM qna WHERE b_num=#{qna_num}
     </delete>
 
 
-<!--    파일삭제-->
+<!--파일삭제-->
     <delete id="deleteFiles" parameterType="Integer">
         DELETE FROM boardfile WHERE bf_bnum=#{bf_bnum}
     </delete>
 
-<!--    댓글 삭제 DAO-->
+<!--댓글 삭제 DAO-->
     <delete id="deleteReplies" parameterType="Integer">
         DELETE FROM reply WHERE r_bnum=#{r_bnum}
     </delete>
 
-<!--    게시글 수정시 단독파일 삭제 DAO-->
+<!--게시글 수정시 단독파일 삭제 DAO-->
     <delete id="deleteFile" parameterType="String">
         DELETE FROM qna WHERE bf_sysname=#{sysname}
     </delete>
 
-<!--    페이징 조회 구하는 DAO-->
+<!--페이징 조회 구하는 DAO-->
     <select id="selectBoardList" resultType="BoardDto" parameterType="SearchDto">
         SELECT * FROM qna
         <if test="colname != null and colname != ''">
@@ -58,7 +58,7 @@
         LIMIT #{pageNum}, #{listCnt}
     </select>
 
-<!--    게시글 저장 메소드-->
+<!--게시글 저장 메소드-->
     <select id="selectBoardCnt" resultType="Integer" parameterType="SearchDto">
         SELECT count(*) FROM qna
         <if test="colname != null and colname != ''">
