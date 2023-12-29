@@ -1018,17 +1018,18 @@ label.form-label {
 	align-items: center;
 }
 .btn-map a {
+	text-align: center;
 	text-decoration: none;
 	margin: 0 auto;
-	background: #0d6efd;
 	color: white;
 	border-radius: 10px;
-	border: none;
-	height: 40px;
-	width: 100px;
+	border: 1px;
+	height: 35px;
+	width: 135px;
 	justify-content: center;
 	display: flex;
 	align-items: center;
+	box-sizing: border-box;
 }
 .resv-change{
 	text-decoration: none;
@@ -1091,7 +1092,10 @@ label.form-label {
 .resv-cancel:hover{
 	color: black;
 }
-
+#map {
+	margin: 0 auto;
+}
+/**/
 
 .btn-area .paging {
 	opacity: 0.8;
@@ -1211,3 +1215,4 @@ label.form-label {
 	z-index: 9999;
 }
 
+/*ㅌ
