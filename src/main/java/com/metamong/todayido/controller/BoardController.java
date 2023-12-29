@@ -91,13 +91,6 @@ public class BoardController {
         return mv;
     }
 
-    @PostMapping("updateProc")
-    public String updateProc(List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
-        log.info("updateProc()");
-        String view = bServ.updateBoard(files, board, session, rttr);
-        return view;
-    }
-
     @GetMapping("rCategory")
     public String rCategory() {
         log.info("rCategory()");

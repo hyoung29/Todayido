@@ -24,8 +24,8 @@ public class DetailService {
     public ModelAndView getReview(int store_num){
         log.info("getReview()");
         ModelAndView mv = new ModelAndView();
-        List<StoreDto> sList = dDao.selectStore(store_num);
-        mv.addObject("sList", sList);
+        StoreDto store = dDao.selectStore(store_num);
+        mv.addObject("store", store);
         List<ReviewDto> rList = dDao.selectReview(store_num);
         mv.addObject("rList", rList);
 
@@ -79,4 +79,5 @@ public class DetailService {
 
 
     }
+
 }

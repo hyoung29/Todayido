@@ -1,8 +1,7 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.ReservDto;
-import com.metamong.todayido.dto.StoreDto;
-import com.metamong.todayido.service.StoreService;
+import com.metamong.todayido.service.DetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,14 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Controller
 public class ReservFormController {
     @Autowired
-    private StoreService sServ;
+    private DetailService dServ;
 
     private ReservDto reservation = new ReservDto();
 
@@ -64,7 +62,7 @@ public class ReservFormController {
         lmap.put("a", a);
         lmap.put("b", b);
         model.addAttribute("lmap", lmap);
-        ModelAndView mv = sServ.getStore(store_num);
+        ModelAndView mv = dServ.getReview(store_num);
         return mv;
     }
 
