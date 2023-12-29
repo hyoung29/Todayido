@@ -3,15 +3,15 @@
 <mapper namespace="com.metamong.todayido.dao.OwnerDao">
     <insert id="insertOwner" parameterType="ownerDto">
         INSERT INTO owner
-        VALUES (#{owner_num},#{store_name},#{business_num},#{owner_name},#{owner_id},#{owner_pwd})
+        VALUES (#{store_name},#{business_num},#{owner_name},#{owner_pwd})
     </insert>
     <select id="selectId" resultType="Integer" parameterType="String">
-        SELECT count(*) FROM owner WHERE owner_num=#{owner_num}
+        SELECT count(*) FROM owner WHERE business_num=#{business_num}
     </select>
     <select id="selectPassword" resultType="String" parameterType="String">
-        SELECT owner_pwd FROM owner WHERE owner_id=#{owner_id}
+        SELECT owner_pwd FROM owner WHERE business_num=#{business_num}
     </select>
     <select id="selectOwner" resultType="OwnerDto" parameterType="String">
-        SELECT * FROM owner WHERE owner_id=#{owner_id}
+        SELECT * FROM owner WHERE business_num=#{business_num}
     </select>
 </mapper>

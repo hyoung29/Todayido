@@ -1,7 +1,6 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.OwnerDto;
-import com.metamong.todayido.dto.UserDto;
 import com.metamong.todayido.service.OwnerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -38,5 +37,15 @@ public class OwnerController {
         log.info("ownerloginProc()");
         String view = oServ.ownerloginProc(owner, session, rttr);
         return view;
+    }
+    @GetMapping("pindex")
+    public String pindex(){
+        log.info("pindex");
+        return "pindex";
+    }
+    @GetMapping("ownerPage")
+    public String ownerPage(){
+        log.info("ownerPage()");
+        return "ownerPage";
     }
 }
