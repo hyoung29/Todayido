@@ -58,6 +58,7 @@ public class UserService {
             if(pEncoder.matches(rPwd, encPwd)){
                 user = uDao.selectUser(user.getUser_id());
                 session.setAttribute("user", user);
+
                 view = "redirect:/";
                 msg = "로그인 성공";
             } else {
