@@ -1,6 +1,7 @@
 package com.metamong.todayido.controller;
 
 import com.metamong.todayido.dto.ReservDto;
+import com.metamong.todayido.dto.StoreDto;
 import com.metamong.todayido.service.DetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +57,9 @@ public class ReservFormController {
     }
 
     @GetMapping("/map")
-    public ModelAndView map(int a, int b, Model model, int store_num){
+    public String map(Model model, int store_num){
         log.info("map");
         Map<String, Integer> lmap = new HashMap<>();
-        lmap.put("a", a);
-        lmap.put("b", b);
         model.addAttribute("lmap", lmap);
         ModelAndView mv = dServ.getReview(store_num);
         return mv;
