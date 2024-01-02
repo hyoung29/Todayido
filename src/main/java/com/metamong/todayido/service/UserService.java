@@ -29,7 +29,7 @@ public class UserService {
         return result;
     }
     public String userJoin(UserDto user, RedirectAttributes rttr){
-        log.info("UserJoin()");
+        log.info("userJoin()");
         String view = null;
         String msg = null;
 

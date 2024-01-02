@@ -7,7 +7,7 @@
 <body>
 <div class="top-bar" th:fragment="header(user)">
     <div class="content">
-        <img src="images/logo 1.png" alt="로고" class="top-left logo" onclick="gohome()">
+        <img src="images/logo 1.png" alt="로고" class="top-left logo" onclick=location.href="/">
         <div class="se-area">
             <form class="search-box" th:action="@{/static}">
                 <input id="keyword" name="keyword" placeholder="오늘 뭐하지?">
@@ -36,16 +36,6 @@
             </ul>
         </nav>
     </div>
-    <script th:inline="javascript">
-        const mem = [[${session.user}]];
-        function gohome(){
-            if(mem != null){
-                location.href = "qnalist?pageNum=1";
-            } else {
-                location.href = "/";
-            }
-        }
-    </script>
 </div>
 <div th:fragment="footer" class="footer-bar">
     <div class="content">
